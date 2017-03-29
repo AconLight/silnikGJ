@@ -10,7 +10,7 @@ import com.mygdx.game.skillhandler.Skill;
 public class Character extends GameObject {
 	
 	private ArrayList<Skill> skills;
-	
+	//Twoja Stara
 	public Character() {
 		super(0, 0);
 		skills = new ArrayList<Skill>();
