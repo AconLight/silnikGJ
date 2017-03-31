@@ -10,16 +10,16 @@ public class TestKulka extends SpriteObject{
 	public TestKulka(GameObject parent) {
 		this.parent = parent;
 		position.y = 30;
-		velocity.x = 10;
-		velocity.y = 10;
+		//velocity.x = 10;
+		//velocity.y = 10;
 		//acceleration.x = 0;
 		//acceleration.y = -4;
 	}
 	
 	public void update(float delta, float vx, float vy) {
 		super.update(delta, vx, vy);
-		acceleration.x = (parent.position.x-position.x)*0.7f;
-		acceleration.y = (parent.position.y-position.y)*0.7f;
+		//acceleration.x = (parent.position.x-position.x)*0.7f;
+		//acceleration.y = (parent.position.y-position.y)*0.7f;
 		
 	}
 

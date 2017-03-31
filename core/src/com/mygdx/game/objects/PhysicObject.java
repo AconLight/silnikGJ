@@ -10,7 +10,7 @@ import com.badlogic.gdx.physics.box2d.joints.DistanceJointDef;
 
 public class PhysicObject extends GameObject{
 	
-	private World world;
+	protected World world;
 	public ArrayList<DistanceJoint> joints;
 	public PhysicObject(World world, float x, float y) {
 		super(x, y);
