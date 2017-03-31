@@ -11,24 +11,27 @@ public class Mebl extends PhysicObject{
 	public PhysicSpriteObject hitbox;
 	public Mebl(World world, float x, float y, int type) {
 		super(world, x, y);
-		set(type);
+		set(type,x,y);
 	}
 	
-	void set(int type) {
+	void set(int type,float x,float y) {
 		switch(type){
 		case MebleId.wiktor: {
-			hitbox = new PhysicSpriteKulka(world, this, 0, 0);
+			hitbox = new PhysicSpriteKulka(world, this, x, y);
 			((PhysicSpriteKulka) hitbox).createBall(30, 1, 1, 1);
 			addSprite(hitbox)
-			.addTexture(Gdx.files.internal("data/badkogic.jpg"));
+			.addTexture(Gdx.files.internal("data/Wiktor.png"));
 			break;
 		}
-		case MebleId.stefan: {
+		case MebleId.pufa: {
+			hitbox = new PhysicSpriteKulka(world, this, 0, 0);
+			((PhysicSpriteKulka) hitbox).createBall(30, 1, 1, 1);
 			addSprite(new SpriteObject())
-			.addTexture(Gdx.files.internal("data/badkogic.jpg"));
+			.addTexture(Gdx.files.internal("data/pufa.png"));
 			break;
 		}
 		}
+	
 	}
 	
 	public void update(float delta, float vx, float vy) {
