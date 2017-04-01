@@ -28,8 +28,25 @@ public class Controller implements InputProcessor{
 
 	@Override
 	public boolean keyDown(int keycode) {
-		Gdx.app.log("asddas", "clicked");
 
+		switch(keycode) {
+		case Keys.W: {
+			model.getScene().player.isW = true;
+			break;
+		}
+		case Keys.S: {
+			model.getScene().player.isS = true;
+			break;
+		}
+		case Keys.D: {
+			model.getScene().player.isD = true;
+			break;
+		}
+		case Keys.A: {
+			model.getScene().player.isA = true;
+			break;
+		}
+		}
 		
 		return false;
 	}
@@ -37,6 +54,24 @@ public class Controller implements InputProcessor{
 	@Override
 	public boolean keyUp(int keycode) {
 		
+		switch(keycode) {
+		case Keys.W: {
+			model.getScene().player.isW = false;
+			break;
+		}
+		case Keys.S: {
+			model.getScene().player.isS = false;
+			break;
+		}
+		case Keys.D: {
+			model.getScene().player.isD = false;
+			break;
+		}
+		case Keys.A: {
+			model.getScene().player.isA = false;
+			break;
+		}
+		}
 		return false;
 	}
 
@@ -51,10 +86,8 @@ public class Controller implements InputProcessor{
 		
 		gameX = GameVars.gameWidth*(screenX/screenWidth) + model.cam.position.x - GameVars.gameWidth/2;
 		gameY = GameVars.gameHeight*(1 - screenY/screenHeight) + model.cam.position.y - GameVars.gameHeight/2;
-		if (screenX > screenWidth/2)
-			model.getScene().test.applyForce(3, 3);
-		else
-			model.getScene().test.applyForce(-3, 3);
+
+			
 		Gdx.app.log("asddas", "clicked");
 		return false;
 	}
