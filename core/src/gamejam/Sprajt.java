@@ -8,5 +8,6 @@ public class Sprajt extends GameObject{
 		super(x, y);
 		// TODO Auto-generated constructor stub
 	}
+	
 
 }
