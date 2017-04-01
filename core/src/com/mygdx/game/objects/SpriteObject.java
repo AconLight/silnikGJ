@@ -12,6 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 public class SpriteObject extends GameObject {
 	
 	//ArrayList<Texture> texList;
+	public boolean isPhysic;
 	public ArrayList<TextureRegion> regionList;
 	public int frameNum;
 	public float frameTime;
