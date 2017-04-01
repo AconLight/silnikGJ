@@ -49,7 +49,7 @@ public class Player extends PhysicObject{
 
 		speed = 5000;
 			
-		int i = 0;
+	
 		if (isW && hitbox.body.getLinearVelocity().y < Stats.maxSpeed) {
 			alfa = 90;
 			applyForce((float)(Math.cos(Math.toRadians(alfa))*speed*delta), (float)(Math.sin(Math.toRadians(alfa))*speed*delta));
