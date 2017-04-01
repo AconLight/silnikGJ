@@ -6,10 +6,12 @@ import com.mygdx.game.objects.GameObject;
 import com.mygdx.game.objects.PhysicSpriteObject;
 
 public class PhysicSpriteKulka extends PhysicSpriteObject{
-
+	
 	public PhysicSpriteKulka(World world, GameObject parent, float x, float y, BodyType type) {
 		super(world, parent, x, y);
+		isPhysic = true; //huj
 		body = world.createBody(createBodyDef(type, x, y));
+		
 	}
 	
 	public void createBall(float r) {
