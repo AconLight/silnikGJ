@@ -10,6 +10,7 @@ public class PhysicSpriteRect extends PhysicSpriteObject{
 	public PhysicSpriteRect(World world, GameObject parent, float x, float y, BodyType type) {
 		super(world, parent, x, y);
 		body = world.createBody(createBodyDef(type, x, y));
+		isPhysic = true;
 	}
 	
 
