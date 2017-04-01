@@ -90,6 +90,32 @@ public class Map {
 		mapObjects.add(sub11);
 		Mebl sub12 = new Mebl(scene.getWorld(), -700,844 , MebleId.subway);
 		mapObjects.add(sub12);
+		Mebl sub13 = new Mebl(scene.getWorld(), -900,788 , MebleId.subway);
+		mapObjects.add(sub13);
+		Mebl sub14 = new Mebl(scene.getWorld(), -860,788 , MebleId.subway);
+		mapObjects.add(sub14);
+		Mebl sub15 = new Mebl(scene.getWorld(), -820,788 , MebleId.subway);
+		mapObjects.add(sub15);
+		Mebl sub16 = new Mebl(scene.getWorld(), -780,788 , MebleId.subway);
+		mapObjects.add(sub16);
+		Mebl sub17 = new Mebl(scene.getWorld(), -740,788 , MebleId.subway);
+		mapObjects.add(sub17);
+		Mebl sub18 = new Mebl(scene.getWorld(), -700,788 , MebleId.subway);
+		mapObjects.add(sub18);
+		Mebl sub19 = new Mebl(scene.getWorld(), -900,732 , MebleId.subway);
+		mapObjects.add(sub19);
+		Mebl sub20 = new Mebl(scene.getWorld(), -860,732 , MebleId.subway);
+		mapObjects.add(sub20);
+		Mebl sub21 = new Mebl(scene.getWorld(), -820,732 , MebleId.subway);
+		mapObjects.add(sub21);
+		Mebl sub22 = new Mebl(scene.getWorld(), -780,732 , MebleId.subway);
+		mapObjects.add(sub22);
+		Mebl sub23 = new Mebl(scene.getWorld(), -740,732 , MebleId.subway);
+		mapObjects.add(sub23);
+		Mebl sub24 = new Mebl(scene.getWorld(), -700,732 , MebleId.subway);
+		mapObjects.add(sub24);
+		Mebl stol = new Mebl(scene.getWorld(), -400,800 , MebleId.stol);
+		mapObjects.add(stol);
 		
 		
 		
