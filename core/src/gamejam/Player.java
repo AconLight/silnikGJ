@@ -153,7 +153,15 @@ public class Player extends PhysicObject{
 	}
 	public void throwProj() {
 		projs.get(projId).position.set(hitbox.position);
+		projs.get(projId).throwProj((float) (alfa+Math.toRadians(5)), hitbox.body.getLinearVelocity().x*GameVars.box2dScale, hitbox.body.getLinearVelocity().y*GameVars.box2dScale);
+		projId++;
+		if (projId > projs.size()-1) projId = 0;
+		projs.get(projId).position.set(hitbox.position);
 		projs.get(projId).throwProj(alfa, hitbox.body.getLinearVelocity().x*GameVars.box2dScale, hitbox.body.getLinearVelocity().y*GameVars.box2dScale);
+		projId++;
+		if (projId > projs.size()-1) projId = 0;
+		projs.get(projId).position.set(hitbox.position);
+		projs.get(projId).throwProj((float) (alfa-Math.toRadians(5)), hitbox.body.getLinearVelocity().x*GameVars.box2dScale, hitbox.body.getLinearVelocity().y*GameVars.box2dScale);
 		projId++;
 		if (projId > projs.size()-1) projId = 0;
 	}

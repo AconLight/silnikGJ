@@ -3,6 +3,7 @@ package gamejam;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
@@ -11,68 +12,54 @@ import com.mygdx.game.objects.PhysicObject;
 import com.mygdx.game.objects.SpriteObject;
 import com.mygdx.game.settings.GameVars;
 
-public class Human extends PhysicObject{
+public class Fem extends PhysicObject{
+	public int banany;
+	float time2;
+	public boolean isDead;
 	Random g;
 	float tab[] = new float[12];
 	float time;
 	float drenka;
 	public PhysicSpriteKulka hitbox;
-	public SpriteObject lewa;
-	SpriteObject prawa;
-	SpriteObject glowa;
+	SpriteObject lewa, prawa, glowa, czarna;
 	public boolean isW, isS, isD, isA;
 	float alfa;
 	float speed;
-	public boolean isDead;
+	public boolean isVisible;
 	public boolean isTriggered = false;
-	public Human(World world, float x, float y, float speed) {
+	public Fem(World world, float x, float y, float speed) {
 		super(world, x, y);
+		banany = 0;
+		time2 = 0;
+		isDead = false;
+		isVisible = false;
 		g = new Random();
 		for(int j = 0; j < 12; j++) {
 			tab[j] = g.nextInt(10)+10;
 		}
 		hitbox = new PhysicSpriteKulka(world, this, x, y, BodyType.DynamicBody);
 		hitbox.createBall(50, 10, 1, 1);
-		
+		hitbox.scl = 0;
 		lewa = new SpriteObject(this, 0, 0);
-		
+		lewa.scl = 0;
 		prawa = new SpriteObject(this, 0, 0);
-		
-		glowa = new SpriteObject(this, 0, 0);
+		prawa.scl = 0;
 		
 		addSprite(lewa)
-		.addTexture(Gdx.files.internal("data/lewa" + (g.nextInt(3) + 2) + ".png"));
+		.addTexture(Gdx.files.internal("data/feml.png"));
 		
 		addSprite(prawa)
-		.addTexture(Gdx.files.internal("data/prawa" + (g.nextInt(3) + 2) + ".png"));
+		.addTexture(Gdx.files.internal("data/femr.png"));
 		
 		addSprite(hitbox)
-		.addTexture(Gdx.files.internal("data/kadlub1.png"));
+		.addTexture(Gdx.files.internal("data/fem.png"));
 		
-		addSprite(glowa)
-		.addTexture(Gdx.files.internal("data/glowa" + (g.nextInt(5) + 1) + ".png"));
 		
 		this.speed = speed;
 	}
 	
-	public void small(float delta) {
-		
-		if (lewa.scl > 0) {
-			lewa.scl -= delta;
-			prawa.scl -= delta;
-			hitbox.scl -= delta;
-			glowa.scl -= delta;
-		}
-		else {
-			lewa.isVisible = false;
-			prawa.isVisible = false;
-			hitbox.isVisible = false;
-			glowa.isVisible = false;
-			
-		}
-	}
-	
 	public void update(float delta, float vx, float vy) {
+		if (isVisible) {
 		super.update(delta, vx, vy);
 		Gdx.app.log("asdasdasd", " " + hitbox.body.getLinearVelocity().x);
 		/*if (hitbox.body.getLinearVelocity().x*hitbox.body.getLinearVelocity().x + 
@@ -81,7 +68,32 @@ public class Human extends PhysicObject{
 		else {
 			applyForce((float)(-Math.cos(Math.toRadians(alfa))*speed*delta), (float)(-Math.sin(Math.toRadians(alfa))*speed*delta));
 		}*/
-		
+		if (isDead) {
+			if (lewa.scl >= 0) {
+				time2 += delta;
+				lewa.scl -= delta*time2/10;
+				prawa.scl -= delta*time2/10;
+				hitbox.scl -= delta*time2/10;
+			}
+			else {
+				lewa.scl = 0;
+				prawa.scl = 0;
+				hitbox.scl = 0;
+			}
+			
+		}
+		else {
+		if (lewa.scl < 1) {
+			lewa.scl += delta/2;
+			prawa.scl += delta/2;
+			hitbox.scl += delta/2;
+		}
+		else {
+			lewa.scl =1 + banany/4f;
+			prawa.scl =1+ banany/4f;
+			hitbox.scl =1+ banany/4f;
+		}
+		}
 
 		if((int)((time*tab[0]/20 + tab[1])/tab[2])%2 == 1) isW = true;
 		else isW = false;
@@ -125,16 +137,16 @@ public class Human extends PhysicObject{
 			hitbox.alfa = (float) Math.toDegrees(hitbox.alfa);
 			prawa.alfa = (float) (hitbox.alfa);
 			lewa.alfa = (float) (hitbox.alfa);
-			glowa.alfa = (float) (hitbox.alfa);
+			//glowa.alfa = (float) (hitbox.alfa);
 			
 			//if (v > 30) v = 30;
 			time += delta;
 			drenka = (float) (Math.sin(time*5)*v/40);
 			prawa.position.set(hitbox.position.x + drenka * (float)Math.cos((alfa)), hitbox.position.y + drenka * (float)Math.sin((alfa)));
 			lewa.position.set(hitbox.position.x - drenka * (float)Math.cos((alfa)), hitbox.position.y - drenka * (float)Math.sin((alfa)));
-			glowa.position.set(hitbox.position);
+			//glowa.position.set(hitbox.position);
 			}
-	
+	}
 	public void setTarget(Vector2 playerPos) {
 		if (isTriggered) {
 		float dx = playerPos.x - hitbox.position.x;
@@ -143,5 +155,9 @@ public class Human extends PhysicObject{
 		applyForce(GameVars.box2dScale*Stats.maxSpeed/10*dx/dr, GameVars.box2dScale*Stats.maxSpeed/10*dy/dr);
 		}
 	}
+	public void render(SpriteBatch batch) {
+		if(isVisible) super.render(batch);
+	}
 
 }
+
