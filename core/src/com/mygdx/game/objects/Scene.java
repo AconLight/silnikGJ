@@ -109,9 +109,9 @@ public class Scene {
 		//world = new World(new Vector2(0, 0), true); 
 	}
 	
-	public void render(SpriteBatch batch) {
+	public void render(SpriteBatch batch, int pr) {
 		for(int i=0; i<gameObjects.size();i++)
-			gameObjects.get(i).render(batch);
+			if ( gameObjects.get(i).objectViewPriority == pr) gameObjects.get(i).render(batch);
 		//Gdx.app.log("rendered", "scene");
 	}
 

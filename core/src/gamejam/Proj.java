@@ -22,6 +22,11 @@ public class Proj extends SpriteObject{
 		velocity.set((float)(400*Math.cos(alfa)), (float)(400*Math.sin(alfa)));
 		isVisible = true;
 	}
+	
+	public void update(float delta, float vx, float vy) {
+		super.update(delta, vx, vy);
+		alfa += 105*delta;
+	}
 
 	
 	

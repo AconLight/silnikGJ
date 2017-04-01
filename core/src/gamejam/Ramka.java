@@ -2,6 +2,7 @@ package gamejam;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.objects.SpriteObject;
 import com.mygdx.game.settings.GameVars;
 
@@ -24,11 +25,14 @@ public class Ramka extends Sprajt{
 	public Ramka(float x, float y, OrthographicCamera cam ) {
 		super(x, y);
 		this.cam = cam;
-		// TODO Auto-generated constructor stub
+		objectViewPriority = 2;
 	}
 	
-	public Ramka() {
+	public Ramka(OrthographicCamera cam ) {
+		
 		super(960, 200);
+		objectViewPriority = 2;
+		this.cam = cam;
 		ramkaKorwin();
 		ramkaNosal();
 	}
@@ -220,5 +224,14 @@ public class Ramka extends Sprajt{
 		break;
 		}
 
+	}
+	public void render(SpriteBatch batch) {
+		//float x = cam.position.x;
+		//float y = cam.position.y;
+		//cam.translate(-cam.position.x, -cam.position.y);
+		//cam.update();
+		super.render(batch);
+		//cam.translate(x, y);
+		//cam.update();
 	}
 }

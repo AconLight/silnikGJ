@@ -33,8 +33,14 @@ public class GameScene extends Scene{
 		player = new Player(world, 600, 600);
 		addGameObject(player);
 		hums.add(new Human(world, 700, 700, 500));
+		hums.add(new Human(world, 800, 700, 500));
+		hums.add(new Human(world, 900, 700, 500));
+		hums.add(new Human(world, 1000, 700, 500));
+		hums.add(new Human(world, 1100, 700, 500));
+		hums.add(new Human(world, 1200, 700, 500));
+		hums.add(new Human(world, 1300, 700, 500));
 		gameObjects.addAll(hums);
-		ramka = new Ramka();
+		ramka = new Ramka(cam);
 		ramka.ramkaKorwin();
 		addGameObject(ramka);
 		
