@@ -5,10 +5,13 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.mygdx.game.gameobjects.PhysicSpriteKulka;
 import com.mygdx.game.objects.PhysicObject;
+import com.mygdx.game.objects.SpriteObject;
 import com.mygdx.game.settings.GameVars;
 
 public class Player extends PhysicObject{
+	float time;
 	PhysicSpriteKulka hitbox;
+	SpriteObject lewa, prawa;
 	public boolean isW, isS, isD, isA;
 	float alfa;
 	float speed;
@@ -16,8 +19,20 @@ public class Player extends PhysicObject{
 		super(world, x, y);
 		hitbox = new PhysicSpriteKulka(world, this, x, y, BodyType.DynamicBody);
 		hitbox.createBall(50, 10, 1, 1);
+		
+		lewa = new SpriteObject(this, 0, 0);
+		
+		prawa = new SpriteObject(this, 0, 0);
+		
+		addSprite(lewa)
+		.addTexture(Gdx.files.internal("data/lewa.png"));
+		
+		addSprite(prawa)
+		.addTexture(Gdx.files.internal("data/prawa.png"));
+		
 		addSprite(hitbox)
-		.addTexture(Gdx.files.internal("data/badlogic.jpg"));
+		.addTexture(Gdx.files.internal("data/kadlub.png"));
+		
 		speed = 5000;
 	}
 	
@@ -65,6 +80,11 @@ public class Player extends PhysicObject{
 				hitbox.alfa = 0;			
 			}
 			hitbox.alfa = (float) Math.toDegrees(hitbox.alfa);
+			prawa.alfa = (float) (hitbox.alfa);
+			lewa.alfa = (float) (hitbox.alfa);
+			
+			prawa.position.set(hitbox.position);
+			lewa.position.set(hitbox.position);
 
 	}
 	
