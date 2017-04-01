@@ -17,7 +17,7 @@ public class Map {
 	}
 	
 	void set1(GameScene scene) {
-		Mebl asd = new Mebl(scene.getWorld(), 200, 200, 1);
-		mapObjects.add(asd);
+		//Mebl asd = new Mebl(scene.getWorld(), 200, 200, 1);
+		//mapObjects.add(asd);
 	}
 }
