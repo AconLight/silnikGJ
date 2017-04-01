@@ -33,11 +33,11 @@ public class Pawian extends PhysicObject{
 		}
 		hitbox = new PhysicSpriteKulka(world, this, x, y, BodyType.DynamicBody);
 		hitbox.createBall(50, 10, 1, 1);
-		
+		hitbox.scl = 0;
 		lewa = new SpriteObject(this, 0, 0);
-		
+		lewa.scl = 0;
 		prawa = new SpriteObject(this, 0, 0);
-		
+		prawa.scl = 0;
 		
 		addSprite(lewa)
 		.addTexture(Gdx.files.internal("data/pawianlewa.png"));
@@ -62,7 +62,16 @@ public class Pawian extends PhysicObject{
 		else {
 			applyForce((float)(-Math.cos(Math.toRadians(alfa))*speed*delta), (float)(-Math.sin(Math.toRadians(alfa))*speed*delta));
 		}*/
-		
+		if (lewa.scl < 1) {
+			lewa.scl += delta/2;
+			prawa.scl += delta/2;
+			hitbox.scl += delta/2;
+		}
+		else {
+			lewa.scl =1;
+			prawa.scl =1;
+			hitbox.scl =1;
+		}
 
 		if((int)((time*tab[0]/20 + tab[1])/tab[2])%2 == 1) isW = true;
 		else isW = false;

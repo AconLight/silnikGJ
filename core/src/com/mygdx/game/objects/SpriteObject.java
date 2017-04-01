@@ -23,6 +23,7 @@ public class SpriteObject extends GameObject {
 	public boolean isSticked = true;
 	public float alfa;
 	public boolean isVisible;
+	public float scl;
 	
 	public GameObject parent;
 	
@@ -36,6 +37,7 @@ public class SpriteObject extends GameObject {
 		frameTime=1f;
 		isPingPong=false;
 		this.parent = parent;
+		scl = 1;
 	}
 	public SpriteObject(){
 		super(0, 0);
@@ -46,6 +48,7 @@ public class SpriteObject extends GameObject {
 		frameNum=0;
 		frameTime=1f;
 		isPingPong=false;
+		scl = 1;
 	}
 	
 	
@@ -109,7 +112,7 @@ public class SpriteObject extends GameObject {
 				position.y - regionList.get(frameNum).getRegionHeight()/2,
 				regionList.get(frameNum).getRegionWidth()/2, regionList.get(frameNum).getRegionHeight()/2,
 				regionList.get(frameNum).getRegionWidth(), regionList.get(frameNum).getRegionHeight(),
-				1, 1, alfa);
+				scl, scl, alfa);
 			//Gdx.app.log("rendered", "spriteobject");
 		}
 		
