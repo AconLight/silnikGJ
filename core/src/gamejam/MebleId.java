@@ -1,6 +1,7 @@
 package gamejam;
 
 public class MebleId {
+	public static final int sciana = 0;
 	public static final int wiktor = 1;
 	public static final int stefan = 2;
 	public static final int stol = 3;
@@ -14,4 +15,6 @@ public class MebleId {
 	public static final int szafka =11;
 	public static final int pufa_mala=12;
 	public static final int kaloryfer=13;
+	public static final int tron=14;
+	public static final int fotel=15;
 }
