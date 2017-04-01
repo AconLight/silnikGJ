@@ -11,9 +11,12 @@ import com.mygdx.game.objects.SpriteObject;
 
 public class Mebl extends PhysicObject{
 	public PhysicSpriteObject hitbox,hitbox2;
+	public SpriteObject sp, sp2;
+	public int type;
 	public Mebl(World world, float x, float y, int type) {
 		super(world, x, y);
 		set(type,x,y);
+		this.type = type;
 	}
 	
 	void set(int type,float x,float y) {
@@ -37,23 +40,67 @@ public class Mebl extends PhysicObject{
 			break;
 		}
 		case MebleId.pufa: {
-			hitbox = new PhysicSpriteKulka(world, this, x-20, y+15,BodyType.StaticBody);
-			((PhysicSpriteKulka) hitbox).createBall(30, 1, 1, 1);
-			hitbox2 = new PhysicSpriteKulka(world, this, x+25, y-18,BodyType.StaticBody);
-			((PhysicSpriteKulka) hitbox2).createBall(25, 1, 1, 1);
+			hitbox = new PhysicSpriteKulka(world, this, x-20, y+15,BodyType.DynamicBody);
+			((PhysicSpriteKulka) hitbox).createBall(30, 100, 1, 1);
+			hitbox2 = new PhysicSpriteKulka(world, this, x+25, y-18,BodyType.DynamicBody);
+			((PhysicSpriteKulka) hitbox2).createBall(25, 100, 1, 1);
+			addDistanceJoint(hitbox.body, hitbox2.body);
 			addSprite(hitbox);
-			addSprite(new SpriteObject(this, 0, 0))
-			.addTexture(Gdx.files.internal("data/testy/pufa1.0.png"));
+			addSprite(hitbox2);
+			sp = new SpriteObject(this, -20, 15);
+			addSprite(sp)
+			.addTexture(Gdx.files.internal("data/testy/pufa_pol1.png"));
+			sp2 = new SpriteObject(this, 25, -18);
+			addSprite(sp2)
+			.addTexture(Gdx.files.internal("data/testy/pufa_pol2.png"));
 			break;
 		}
-
+		case MebleId.wojtas: {
+			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.StaticBody);
+			((PhysicSpriteRect) hitbox).createRect(75, 155, 1, 1, 1);
+			addSprite(hitbox);
+			addSprite(new SpriteObject(this, 0, 20))
+			.addTexture(Gdx.files.internal("data/testy/wojtas1.png"));
+			break;	
+		}
+		case MebleId.banany: {
+			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.StaticBody);
+			((PhysicSpriteRect) hitbox).createRect(50, 60, 1, 1, 1);
+			addSprite(hitbox);
+			addSprite(new SpriteObject(this, 0, 0))
+			.addTexture(Gdx.files.internal("data/testy/banany.png"));
+			break;	
+		}
+		case MebleId.pizza: {
+			hitbox = new PhysicSpriteKulka(world, this, x, y,BodyType.StaticBody);
+			((PhysicSpriteKulka) hitbox).createBall(100, 1, 1, 1);
+			addSprite(hitbox);
+			addSprite(new SpriteObject(this, 0, 0))
+			.addTexture(Gdx.files.internal("data/testy/Pizza.png"));
+			break;	
+		}
+		case MebleId.krzeslo: {
+			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.StaticBody);
+			((PhysicSpriteRect) hitbox).createRect(50, 45, 1, 1, 1);
+			addSprite(hitbox);
+			addSprite(new SpriteObject(this, 0, 0))
+			.addTexture(Gdx.files.internal("data/testy/krzeslo.png"));
+			break;	
+		}
 		}
 	
 	}
 	
 	public void update(float delta, float vx, float vy) {
 		super.update(delta, vx, vy);
-		// TODO
+		switch(type){
+		case MebleId.pufa: {
+			sp.position.set(hitbox.position);
+			sclVel(0.96f);
+			sp2.position.set(hitbox2.position.x,hitbox2.position.y);
+			break;
+		}
+		}
 	}
 
 }
