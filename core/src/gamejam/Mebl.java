@@ -24,7 +24,7 @@ public class Mebl extends PhysicObject{
 			break;
 		}
 		case MebleId.pufa: {
-			hitbox = new PhysicSpriteKulka(world, this, 0, 0);
+			hitbox = new PhysicSpriteRect(world, this, 0, 0);
 			((PhysicSpriteKulka) hitbox).createBall(30, 1, 1, 1);
 			addSprite(new SpriteObject())
 			.addTexture(Gdx.files.internal("data/pufa.png"));
