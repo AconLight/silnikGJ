@@ -14,31 +14,34 @@ import com.mygdx.game.gameobjects.PhysicTest;
 import com.mygdx.game.objects.GameObject;
 import com.mygdx.game.objects.PhysicSpriteObject;
 import com.mygdx.game.objects.Scene;
+import com.mygdx.game.settings.GameVars;
 
 import gamejam.Human;
 import gamejam.Map;
+import gamejam.Pawian;
 import gamejam.Player;
 import gamejam.Ramka;
 
 public class GameScene extends Scene{
-	
+	float pawianX = 200, pawianY = 200;
+	int score;
 	public Player player;
 	public Ramka ramka;
 	public Map map;
 	public ArrayList<Human> hums;
+	public Pawian pawian;
 	public GameScene(OrthographicCamera cam) {
 		this.cam = cam;
+		score = 0;
 		hums = new ArrayList<Human>();
 		map = new Map(this);
-		player = new Player(world, 600, 600);
+		player = new Player(world, 0, 0);
+		pawian = new Pawian(world, 600, 300, 100);
+		addGameObject(pawian);
 		addGameObject(player);
 		hums.add(new Human(world, 700, 700, 500));
-		hums.add(new Human(world, 800, 700, 500));
-		hums.add(new Human(world, 900, 700, 500));
-		hums.add(new Human(world, 1000, 700, 500));
-		hums.add(new Human(world, 1100, 700, 500));
-		hums.add(new Human(world, 1200, 700, 500));
-		hums.add(new Human(world, 1300, 700, 500));
+
+
 		gameObjects.addAll(hums);
 		ramka = new Ramka(cam);
 		ramka.ramkaKorwin();
@@ -72,6 +75,11 @@ public class GameScene extends Scene{
 					if (Math.sqrt(dx*dx + dy*dy) < 50) {
 						player.projs.get(i).isVisible = false;
 						hums.get(j).isTriggered = true;
+						score++;
+						if (score == hums.size()) {
+							pawian.isVisible = true;
+							
+						}
 					}
 				}
 			}
