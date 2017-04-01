@@ -17,7 +17,19 @@ public class Map {
 	}
 	
 	void set1(GameScene scene) {
+		
 
+		Sprajty plansza = new Sprajty();
+		plansza.set(1, 0, 0);
+		mapObjects.add(plansza);
+		Mebl sciana1 = new Mebl(scene.getWorld(), 0, 1485, MebleId.sciana);
+		mapObjects.add(sciana1);
+		Mebl sciana2 = new Mebl(scene.getWorld(), 0, -1485, MebleId.sciana);
+		mapObjects.add(sciana2);
+		Mebl sciana3 = new Mebl(scene.getWorld(), 1985, 0, MebleId.sciana2);
+		mapObjects.add(sciana3);
+		Mebl sciana4 = new Mebl(scene.getWorld(), -1985, 0, MebleId.sciana2);
+		mapObjects.add(sciana4);
 		Mebl wiktor = new Mebl(scene.getWorld(), 400, 200, MebleId.wiktor);
 		mapObjects.add(wiktor);
 		Mebl stefan = new Mebl(scene.getWorld(), 400, 500, MebleId.stefan);
@@ -46,10 +58,9 @@ public class Map {
 		mapObjects.add(tron);
 		Mebl fotel = new Mebl(scene.getWorld(), 1450, 300, MebleId.fotel);
 		mapObjects.add(fotel);
-		for(int i=200;i<400;i=+400){
-		Mebl sciana = new Mebl(scene.getWorld(), i, 50, MebleId.sciana);
-		mapObjects.add(sciana);
-		}
+		
+		
+		
 		
 		
 		//Mebl asd = new Mebl(scene.getWorld(), 200, 200, 1);

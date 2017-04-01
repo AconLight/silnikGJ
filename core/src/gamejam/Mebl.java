@@ -23,10 +23,14 @@ public class Mebl extends PhysicObject{
 		switch(type){
 		case MebleId.sciana: {
 			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.StaticBody);
-			((PhysicSpriteRect) hitbox).createRect(200, 50, 1, 1, 1);
+			((PhysicSpriteRect) hitbox).createRect(2000, 25, 1, 1, 1);
 			addSprite(hitbox);
-			addSprite(new SpriteObject(this, 0, 0))
-			.addTexture(Gdx.files.internal("data/testy/sciana.png"));
+			break;
+		}
+		case MebleId.sciana2: {
+			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.StaticBody);
+			((PhysicSpriteRect) hitbox).createRect(25, 1500, 1, 1, 1);
+			addSprite(hitbox);
 			break;
 		}
 		case MebleId.wiktor: {
@@ -162,6 +166,7 @@ public class Mebl extends PhysicObject{
 			.addTexture(Gdx.files.internal("data/testy/fotel.png"));
 			break;
 		}
+		
 		}
 	}
 	
