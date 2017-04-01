@@ -30,14 +30,8 @@ public class Map {
 		mapObjects.add(sciana3);
 		Mebl sciana4 = new Mebl(scene.getWorld(), -1985, 0, MebleId.sciana2);
 		mapObjects.add(sciana4);
-		Mebl wiktor = new Mebl(scene.getWorld(), 400, 200, MebleId.wiktor);
-		mapObjects.add(wiktor);
-		Mebl stefan = new Mebl(scene.getWorld(), 400, 500, MebleId.stefan);
-		mapObjects.add(stefan);
 		Mebl pufa = new Mebl(scene.getWorld(), 300, 350, MebleId.pufa);
 		mapObjects.add(pufa);
-		Mebl wojtas = new Mebl(scene.getWorld(), 100, 350, MebleId.wojtas);
-		mapObjects.add(wojtas);
 		Mebl banany = new Mebl(scene.getWorld(), 700, 700, MebleId.banany);
 		mapObjects.add(banany);
 		Mebl pizza = new Mebl(scene.getWorld(), 700, 200, MebleId.pizza);
@@ -56,9 +50,46 @@ public class Map {
 		mapObjects.add(kaloryfer);
 		Mebl tron = new Mebl(scene.getWorld(), 1450, 1000, MebleId.tron);
 		mapObjects.add(tron);
-		Mebl fotel = new Mebl(scene.getWorld(), 1450, 300, MebleId.fotel);
+		Mebl fotel = new Mebl(scene.getWorld(), 600, -600, MebleId.fotel);
 		mapObjects.add(fotel);
-		
+		Mebl filar1 = new Mebl(scene.getWorld(), -300, -300, MebleId.filar);
+		mapObjects.add(filar1);
+		Mebl filar2 = new Mebl(scene.getWorld(), -300, 300, MebleId.filar);
+		mapObjects.add(filar2);
+		Mebl filar3 = new Mebl(scene.getWorld(), 300, -300, MebleId.filar);
+		mapObjects.add(filar3);
+		Mebl filar4 = new Mebl(scene.getWorld(), 300, 300, MebleId.filar);
+		mapObjects.add(filar4);
+		Mebl wiktor2 = new Mebl(scene.getWorld(), 0, -300, MebleId.wiktor);
+		mapObjects.add(wiktor2);
+		Mebl wojtas2 = new Mebl(scene.getWorld(), -300, 0, MebleId.wojtas);
+		mapObjects.add(wojtas2);
+		Mebl stefan2 = new Mebl(scene.getWorld(), 0, 300, MebleId.stefan);
+		mapObjects.add(stefan2);
+		Mebl sub = new Mebl(scene.getWorld(), -900,900 , MebleId.subway);
+		mapObjects.add(sub);
+		Mebl sub2 = new Mebl(scene.getWorld(), -860,900 , MebleId.subway);
+		mapObjects.add(sub2);
+		Mebl sub3 = new Mebl(scene.getWorld(), -820,900 , MebleId.subway);
+		mapObjects.add(sub3);
+		Mebl sub4 = new Mebl(scene.getWorld(), -780,900 , MebleId.subway);
+		mapObjects.add(sub4);
+		Mebl sub5 = new Mebl(scene.getWorld(), -740,900 , MebleId.subway);
+		mapObjects.add(sub5);
+		Mebl sub6 = new Mebl(scene.getWorld(), -700,900 , MebleId.subway);
+		mapObjects.add(sub6);
+		Mebl sub7 = new Mebl(scene.getWorld(), -900,844 , MebleId.subway);
+		mapObjects.add(sub7);
+		Mebl sub8 = new Mebl(scene.getWorld(), -860,844 , MebleId.subway);
+		mapObjects.add(sub8);
+		Mebl sub9 = new Mebl(scene.getWorld(), -820,844 , MebleId.subway);
+		mapObjects.add(sub9);
+		Mebl sub10 = new Mebl(scene.getWorld(), -780,844 , MebleId.subway);
+		mapObjects.add(sub10);
+		Mebl sub11 = new Mebl(scene.getWorld(), -740,844 , MebleId.subway);
+		mapObjects.add(sub11);
+		Mebl sub12 = new Mebl(scene.getWorld(), -700,844 , MebleId.subway);
+		mapObjects.add(sub12);
 		
 		
 		

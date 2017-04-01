@@ -1,5 +1,7 @@
 package gamejam;
 
+import java.util.Random;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.World;
@@ -8,7 +10,6 @@ import com.mygdx.game.gameobjects.PhysicSpriteRect;
 import com.mygdx.game.objects.PhysicObject;
 import com.mygdx.game.objects.PhysicSpriteObject;
 import com.mygdx.game.objects.SpriteObject;
-
 public class Mebl extends PhysicObject{
 	public PhysicSpriteObject hitbox,hitbox2;
 	public SpriteObject sp, sp2;
@@ -18,7 +19,6 @@ public class Mebl extends PhysicObject{
 		set(type,x,y);
 		this.type = type;
 	}
-	
 	void set(int type,float x,float y) {
 		switch(type){
 		case MebleId.sciana: {
@@ -166,6 +166,26 @@ public class Mebl extends PhysicObject{
 			.addTexture(Gdx.files.internal("data/testy/fotel.png"));
 			break;
 		}
+		case MebleId.filar: {
+			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.StaticBody);
+			((PhysicSpriteRect) hitbox).createRect(75, 75, 1, 1, 1);
+			addSprite(hitbox);
+			sp = new SpriteObject(this, 0, 0);
+			addSprite(sp)
+			.addTexture(Gdx.files.internal("data/testy/filar.png"));
+			break;
+		}
+		case MebleId.subway: {
+			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.DynamicBody);
+			((PhysicSpriteRect) hitbox).createRect(20, 28, 1, 1, 1);
+			addSprite(hitbox);
+			sp = new SpriteObject(this, 0, 0);
+			addSprite(sp)
+			.addTexture(Gdx.files.internal("data/testy/subway.png"));
+			
+			
+			break;
+		}
 		
 		}
 	}
@@ -205,6 +225,13 @@ public class Mebl extends PhysicObject{
 			break;
 		}
 		case MebleId.pufa_mala: {
+			sp.position.set(hitbox.position);
+			sp.alfa=(float) (hitbox.body.getAngle()*180/Math.PI);
+			sclVel(0.95f);
+			hitbox.body.setAngularVelocity(hitbox.body.getAngularVelocity()*0.95f);
+			break;
+		}
+		case MebleId.subway: {
 			sp.position.set(hitbox.position);
 			sp.alfa=(float) (hitbox.body.getAngle()*180/Math.PI);
 			sclVel(0.95f);

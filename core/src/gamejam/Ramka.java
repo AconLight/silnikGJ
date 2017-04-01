@@ -101,13 +101,13 @@ public class Ramka extends Sprajt{
 		testo = new SpriteObject(this, -GameVars.gameWidth/2 - 200, 0);
 		addSprite(testo)
 		.addTexture(Gdx.files.internal("data/testo.png"))
-		.isVisible = true;
+		.isVisible = false;
 		
 		nosal = new SpriteObject(this, GameVars.gameWidth/2 + 200, 0);
 		addSprite(nosal)
 		.addTexture(Gdx.files.internal("data/nosacz.png"))
 		.addTexture(Gdx.files.internal("data/nosacz0.png"))
-		.isVisible = true;
+		.isVisible = false;
 		nosal.frameTime = 999999; 
 				
 		triggered = new SpriteObject(this, 0, -300);
@@ -168,10 +168,12 @@ public class Ramka extends Sprajt{
 			if(ktoraRamka == 1){
 				ramka.isVisible = true; 
 				text.isVisible = true;
+				femi.isVisible = true;
 				if(korwin.position.x < (-GameVars.gameWidth/2 + position.x + 200)) korwin.position.x += delta*speed;
 				else{
 					korwin1.isVisible = true;
 					korwin2.isVisible = true;
+					
 					//korwinMorda(delta);
 					move(korwinMorda(),delta);
 				}
@@ -215,15 +217,20 @@ public class Ramka extends Sprajt{
 				
 				if(triggered.position.y < -150){
 					ramka.isVisible = false;
-					text.isVisible = false;                         
+					text.isVisible = false;   
+					femi.isVisible = false;
+					femi.frameTime = 999999;
+					ktoraRamka = 0;
 				}
 				else triggered.position.y -= delta*(speed);
-				 ktoraRamka = 0;
+				
 			}
 			
 		break;
 		case 2:
 			if(ktoraRamka == 1){
+				nosal.isVisible = true;
+				testo.isVisible = true;
 				ramka.isVisible = true; 
 				text2.isVisible = true;
 				if(testo.position.x < (-GameVars.gameWidth/2 + position.x + 198)) testo.position.x += delta*speed;
@@ -242,7 +249,7 @@ public class Ramka extends Sprajt{
 			else if(ktoraRamka == 2){
 				
 				if( nosacz.position.y < -150) ktoraRamka++;
-				else nosacz.position.y -= delta*(speed);
+				else nosacz.position.y -= delta*(1.3*speed);
 				//ktoraRamka++;
 			}
 			
@@ -257,17 +264,20 @@ public class Ramka extends Sprajt{
 			}
 			
 			else if(ktoraRamka == 4){
-				if(testo.position.x >= (-GameVars.gameWidth/2 + position.x - 200)) testo.position.x -= delta*(1.5*speed);
-				
-				
-				if(nosal.position.x <= (GameVars.gameWidth/2 + position.x + 200)) nosal.position.x += delta*(1.5*speed);
+				if(testo.position.x >= (-GameVars.gameWidth/2 + position.x - 250)) testo.position.x -= delta*(1.5*speed);
+
+				if(nosal.position.x <= (GameVars.gameWidth/2 + position.x + 250)) nosal.position.x += delta*(1.5*speed);
 				
 				if(triggered.position.y < -150){
 					ramka.isVisible = false;
-					text2.isVisible = false;                         
+					text2.isVisible = false;     
+					nosal.isVisible = false;
+					testo.isVisible = false;
+					nosal.frameTime = 999999; 
+					ktoraRamka = 0;
 				}
 				else triggered.position.y -= delta*(speed);
-				ktoraRamka = 0;
+
 			}
 		break;
 		}

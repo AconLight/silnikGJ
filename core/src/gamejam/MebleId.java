@@ -3,6 +3,7 @@ package gamejam;
 public class MebleId {
 	public static final int sciana = 0;
 	public static final int sciana2 = -1;
+	public static final int filar = 16;
 	public static final int wiktor = 1;
 	public static final int stefan = 2;
 	public static final int stol = 3;
@@ -18,4 +19,5 @@ public class MebleId {
 	public static final int kaloryfer=13;
 	public static final int tron=14;
 	public static final int fotel=15;
+	public static final int subway=17;
 }
