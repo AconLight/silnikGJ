@@ -10,6 +10,7 @@ import com.mygdx.game.settings.GameVars;
 
 public class Player extends PhysicObject{
 	float time;
+	float drenka;
 	PhysicSpriteKulka hitbox;
 	SpriteObject lewa, prawa;
 	public boolean isW, isS, isD, isA;
@@ -79,12 +80,16 @@ public class Player extends PhysicObject{
 			else {
 				hitbox.alfa = 0;			
 			}
+			alfa = hitbox.alfa;
 			hitbox.alfa = (float) Math.toDegrees(hitbox.alfa);
 			prawa.alfa = (float) (hitbox.alfa);
 			lewa.alfa = (float) (hitbox.alfa);
 			
-			prawa.position.set(hitbox.position);
-			lewa.position.set(hitbox.position);
+			//if (v > 30) v = 30;
+			time += delta;
+			drenka = (float) (Math.sin(time*5)*v/40);
+			prawa.position.set(hitbox.position.x + drenka * (float)Math.cos((alfa)), hitbox.position.y + drenka * (float)Math.sin((alfa)));
+			lewa.position.set(hitbox.position.x - drenka * (float)Math.cos((alfa)), hitbox.position.y - drenka * (float)Math.sin((alfa)));
 
 	}
 	
