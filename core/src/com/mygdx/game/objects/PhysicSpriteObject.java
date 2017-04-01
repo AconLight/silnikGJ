@@ -38,10 +38,10 @@ public class PhysicSpriteObject extends SpriteObject{
 	}
 	
 	
-	public BodyDef createBodyDef(float x, float y) {
+	public BodyDef createBodyDef(BodyType type, float x, float y) {
 		BodyDef bodyDef = new BodyDef();
 		// We set our body to dynamic, for something like ground which doesn't move we would set it to StaticBody
-		bodyDef.type = BodyType.DynamicBody;
+		bodyDef.type = type;
 		// Set our body's starting position in the world
 		bodyDef.position.set(x/GameVars.box2dScale, y/GameVars.box2dScale);
 		return bodyDef;

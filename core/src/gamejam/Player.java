@@ -2,6 +2,7 @@ package gamejam;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.mygdx.game.gameobjects.PhysicSpriteKulka;
 import com.mygdx.game.objects.PhysicObject;
 import com.mygdx.game.settings.GameVars;
@@ -13,7 +14,7 @@ public class Player extends PhysicObject{
 	float speed;
 	public Player(World world, float x, float y) {
 		super(world, x, y);
-		hitbox = new PhysicSpriteKulka(world, this, x, y);
+		hitbox = new PhysicSpriteKulka(world, this, x, y, BodyType.DynamicBody);
 		hitbox.createBall(50, 10, 1, 1);
 		addSprite(hitbox)
 		.addTexture(Gdx.files.internal("data/badlogic.jpg"));

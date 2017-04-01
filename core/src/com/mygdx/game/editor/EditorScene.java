@@ -3,6 +3,7 @@ package com.mygdx.game.editor;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.mygdx.game.gameobjects.PhysicSpriteKulka;
 import com.mygdx.game.objects.Button;
 import com.mygdx.game.objects.Map;
@@ -43,7 +44,7 @@ public class EditorScene extends Scene{
 	}
 	
 	public void addEditorSpriteObjectToCreature() {
-		PhysicSpriteKulka e = new PhysicSpriteKulka(world, physicobject, mouseX, mouseY);
+		PhysicSpriteKulka e = new PhysicSpriteKulka(world, physicobject, mouseX, mouseY, BodyType.DynamicBody);
 		e.createBall(30, 1, 1, 1);
 		physicobject.addSprite(e);		
 	}
