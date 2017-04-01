@@ -18,11 +18,11 @@ import com.mygdx.game.settings.GameVars;
 
 import gamejam.Human;
 import gamejam.Map;
-<<<<<<< Updated upstream
+
 import gamejam.Pawian;
-=======
+
 import gamejam.Pasek;
->>>>>>> Stashed changes
+
 import gamejam.Player;
 import gamejam.Ramka;
 
@@ -40,14 +40,15 @@ public class GameScene extends Scene{
 		score = 0;
 		hums = new ArrayList<Human>();
 		map = new Map(this);
-<<<<<<< Updated upstream
+
 		player = new Player(world, 0, 0);
 		pawian = new Pawian(world, 600, 300, 100);
 		addGameObject(pawian);
-=======
+
 		player = new Player(world, 600, 600);
 		pasek = new Pasek();
->>>>>>> Stashed changes
+
+		player = new Player(world, 0, 0);
 		addGameObject(player);
 		addGameObject(pasek);
 		hums.add(new Human(world, 700, 700, 500));
