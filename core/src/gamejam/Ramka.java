@@ -8,11 +8,13 @@ public class Ramka extends Sprajt{
 	SpriteObject ramka;
 	SpriteObject text;
 	SpriteObject korwin;
+	SpriteObject korwin1;
+	SpriteObject korwin2;
 	SpriteObject femi; 
 	SpriteObject nosal;
 	SpriteObject testo;
 	
-	
+	boolean up = false;
 	int speed = 300;
 	int ktoraRamkaKurwa;
 	int ktoraRamka = 0;
@@ -35,6 +37,16 @@ public class Ramka extends Sprajt{
 		addSprite(korwin)
 		.addTexture(Gdx.files.internal("data/korwinramka.png"))
 		.isVisible = true;
+		
+		korwin1 = new SpriteObject(this, -GameVars.gameWidth/2 + 200, 0);
+		addSprite(korwin1)
+		.addTexture(Gdx.files.internal("data/korwin1.png"))
+		.isVisible = false;
+		
+		korwin2 = new SpriteObject(this, -GameVars.gameWidth/2 + 200, 0);
+		addSprite(korwin2)
+		.addTexture(Gdx.files.internal("data/korwin2.png"))
+		.isVisible = false;
 		
 		femi = new SpriteObject(this, GameVars.gameWidth/2 + 200, 0);
 		addSprite(femi)
@@ -90,28 +102,44 @@ public class Ramka extends Sprajt{
 	}
 	
 	
-	void korwinMorda(){
+	Boolean korwinMorda(){
 		
-		
-		
+		if(korwin2.position.y >= (position.y )) up = false;
+		else if( korwin2.position.y < position.y - 11) up = true;
+		return up;
 	}
 	
+	void move(Boolean up, float delta){
+		if(up){
+			korwin2.position.y += delta*0.2*speed;	
+			korwin2.position.x += delta*0.05*speed;
+		}
+		else{
+			korwin2.position.y -= delta*0.2*speed;
+			korwin2.position.x -= delta*0.05*speed;
+		}
+	}
 	
 	public void update(float delta, float vx, float vy){
-		
+
 		switch (ktoraRamkaKurwa){
 		case 1:
 			if(ktoraRamka == 1){
 				ramka.isVisible = true; 
 				if(korwin.position.x < (-GameVars.gameWidth/2 + position.x + 200)) korwin.position.x += delta*speed;
-				else korwin.position.x = -GameVars.gameWidth/2 + position.x + 200;
+				else{
+					korwin1.isVisible = true;
+					korwin2.isVisible = true;
+					//korwinMorda(delta);
+					move(korwinMorda(),delta);
+				}
 				
 				if(femi.position.x > (GameVars.gameWidth/2 + position.x - 200)) femi.position.x -= delta*speed;
 				else femi.position.x = GameVars.gameWidth/2 + position.x - 200;
 			
 				if(text.position.y < ( position.y - 100)) text.position.y += delta*(0.5*speed);
 				else{ text.position.y = position.y - 100;
-					ktoraRamka++;
+					//ktoraRamka++;
 				}
 
 				
@@ -129,12 +157,14 @@ public class Ramka extends Sprajt{
 					
 				if(text.position.y < ( position.y - 100)) text.position.y += delta*(0.5*speed);
 				else{ text.position.y = position.y - 100;
-				ktoraRamka++;
+				//ktoraRamka++;
 			}
 				
 			}
 			
 			else if(ktoraRamka == 4){
+				korwin1.isVisible = false;
+				korwin2.isVisible = false;
 				if(korwin.position.x >= (-GameVars.gameWidth/2 + position.x - 200)) korwin.position.x -= delta*(1.5*speed);
 				
 				
@@ -156,10 +186,9 @@ public class Ramka extends Sprajt{
 			
 				if(text.position.y < ( position.y - 100)) text.position.y += delta*(0.5*speed);
 				else{ text.position.y = position.y - 100;
-					ktoraRamka++;
+				//	ktoraRamka++;
 				}
 
-				
 			}
 
 			else if(ktoraRamka == 2){
@@ -174,20 +203,17 @@ public class Ramka extends Sprajt{
 					
 				if(text.position.y < ( position.y - 100)) text.position.y += delta*(0.5*speed);
 				else{ text.position.y = position.y - 100;
-				ktoraRamka++;
-			}
+				//ktoraRamka++;
+				}
 				
 			}
 			
 			else if(ktoraRamka == 4){
 				if(testo.position.x >= (-GameVars.gameWidth/2 + position.x - 200)) testo.position.x -= delta*(1.5*speed);
-				
-				
 				if(nosal.position.x <= (GameVars.gameWidth/2 + position.x + 200)) nosal.position.x += delta*(1.5*speed);
-				
 				if(text.position.y < -150) ramka.isVisible = false;
 				else text.position.y -= delta*(speed);
-				
+		
 			}
 		break;
 		}
