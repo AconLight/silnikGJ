@@ -11,8 +11,8 @@ public class GameVars {
 	public static final float parowaTime = 7;
 	public static final float dashTime = 1.5f;
 	public static final float dashFreezeTime = 0.6f;
-	public static final float gameWidth = 1280;
-	public static final float gameHeight = 960;
+	public static final float gameWidth = 1920;
+	public static final float gameHeight = 1080;
 	public static final float harnasV = 340;
 	public static final float harcerzAcc = 1450;
 	public static final float harnasAlfaSpeed = 150;

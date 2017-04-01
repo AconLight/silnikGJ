@@ -86,9 +86,12 @@ public class Controller implements InputProcessor{
 		
 		gameX = GameVars.gameWidth*(screenX/screenWidth) + model.cam.position.x - GameVars.gameWidth/2;
 		gameY = GameVars.gameHeight*(1 - screenY/screenHeight) + model.cam.position.y - GameVars.gameHeight/2;
+<<<<<<< Updated upstream
 
 			
 		Gdx.app.log("asddas", "clicked");
+=======
+>>>>>>> Stashed changes
 		return false;
 	}
 

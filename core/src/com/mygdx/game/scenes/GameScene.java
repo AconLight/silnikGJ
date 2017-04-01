@@ -13,29 +13,29 @@ import com.mygdx.game.objects.GameObject;
 import com.mygdx.game.objects.PhysicSpriteObject;
 import com.mygdx.game.objects.Scene;
 
+import gamejam.Kwiatek;
+import gamejam.Ramka;
+
 public class GameScene extends Scene{
 	
-	GameObject parent;
-	public PhysicSpriteObject ob1, ob2;
-	public Body kolko1, kolko2;
-	DistanceJointDef joint1;
-	
-	public PhysicTest test;
+
+	Kwiatek kw;
+	Ramka rm;
 	
 	public GameScene(OrthographicCamera cam) {
 		asd = 0;
 		this.cam = cam;
+		rm = new Ramka();
+		//kw = new Kwiatek(300, 300);
+		rm.ramkaKorwin();
+		//addGameObject(kw);
+		addGameObject(rm);
 	}
 	
 	public void createWorld() {
 		super.createWorld();		
 		
-		test = new PhysicTest(world, 300, 300);
-		
-		addGameObject(test);
-		
-		addGround(400, 220, 600, 25);
-		//kolko1.setLinearVelocity(-100, 200);
+
 	}
 	
 	
