@@ -13,7 +13,6 @@ import com.mygdx.game.objects.GameObject;
 import com.mygdx.game.objects.PhysicSpriteObject;
 import com.mygdx.game.objects.Scene;
 
-import gamejam.Human;
 import gamejam.Map;
 import gamejam.Player;
 import gamejam.Ramka;
@@ -23,18 +22,15 @@ public class GameScene extends Scene{
 	public Player player;
 	public Ramka ramka;
 	public Map map;
-	public Human hum;
+	
 	public GameScene(OrthographicCamera cam) {
 		this.cam = cam;
 		map = new Map(this);
 		player = new Player(world, 600, 600);
 		addGameObject(player);
-		hum = new Human(world, 900, 600);
-		addGameObject(hum);
 		ramka = new Ramka();
 		ramka.ramkaKorwin();
 		addGameObject(ramka);
-		
 	}
 	
 	public void createWorld() {

@@ -53,15 +53,8 @@ public class Human extends PhysicObject{
 		}*/
 		
 
-		speed = 1000;
-		if((int)((time*13/20 + 17)/5)%2 == 1) isW = true;
-		else isW = false;
-		if((int)((time*21/20 + 6)/7)%2 == 1) isS = true;
-		else isS = false;
-		if((int)((time*4/20 + 27)/11)%2 == 1) isA = true;
-		else isA = false;
-		if((int)((time*23/20 + 13)/1)%2 == 1) isD = true;
-		else isD = false;
+		speed = 5000;
+			
 		int i = 0;
 		if (isW && hitbox.body.getLinearVelocity().y < Stats.maxSpeed) {
 			alfa = 90;
@@ -96,14 +89,13 @@ public class Human extends PhysicObject{
 			hitbox.alfa = (float) Math.toDegrees(hitbox.alfa);
 			prawa.alfa = (float) (hitbox.alfa);
 			lewa.alfa = (float) (hitbox.alfa);
-			glowa.alfa = (float) (hitbox.alfa);
 			
 			//if (v > 30) v = 30;
 			time += delta;
 			drenka = (float) (Math.sin(time*5)*v/40);
 			prawa.position.set(hitbox.position.x + drenka * (float)Math.cos((alfa)), hitbox.position.y + drenka * (float)Math.sin((alfa)));
 			lewa.position.set(hitbox.position.x - drenka * (float)Math.cos((alfa)), hitbox.position.y - drenka * (float)Math.sin((alfa)));
-			glowa.position.set(hitbox.position.x - drenka * (float)Math.cos((alfa)), hitbox.position.y - drenka * (float)Math.sin((alfa)));
+
 	}
 	
 	public void move(float alfa) {
