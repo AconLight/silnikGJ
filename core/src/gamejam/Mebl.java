@@ -80,15 +80,60 @@ public class Mebl extends PhysicObject{
 			break;	
 		}
 		case MebleId.krzeslo: {
-			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.StaticBody);
-			((PhysicSpriteRect) hitbox).createRect(50, 45, 1, 1, 1);
+			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.DynamicBody);
+			((PhysicSpriteRect) hitbox).createRect(50, 45, 500, 1, 1);
 			addSprite(hitbox);
-			addSprite(new SpriteObject(this, 0, 0))
+			sp = new SpriteObject(this, 0, 0);
+			addSprite(sp)
 			.addTexture(Gdx.files.internal("data/testy/krzeslo.png"));
-			break;	
+			break;
+		}
+		case MebleId.pufajedzenie: {
+			hitbox = new PhysicSpriteKulka(world, this, x, y,BodyType.DynamicBody);
+			((PhysicSpriteKulka) hitbox).createBall(75, 100, 1, 1);
+			addSprite(hitbox);
+			sp = new SpriteObject(this, 0, 0);
+			addSprite(sp)
+			.addTexture(Gdx.files.internal("data/testy/pufajedzenie.png"));
+			break;
+		}
+		case MebleId.stolek: {
+			hitbox = new PhysicSpriteKulka(world, this, x, y,BodyType.DynamicBody);
+			((PhysicSpriteKulka) hitbox).createBall(40, 500, 1, 1);
+			addSprite(hitbox);
+			sp = new SpriteObject(this, 0, 0);
+			addSprite(sp)
+			.addTexture(Gdx.files.internal("data/testy/stolek.png"));
+			break;
+		}
+		case MebleId.szafka: {
+			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.StaticBody);
+			((PhysicSpriteRect) hitbox).createRect(50, 89, 500, 1, 1);
+			addSprite(hitbox);
+			sp = new SpriteObject(this, 0, 0);
+			addSprite(sp)
+			.addTexture(Gdx.files.internal("data/testy/szafka.png"));
+			break;
+		}
+		case MebleId.pufa_mala: {
+			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.DynamicBody);
+			((PhysicSpriteRect) hitbox).createRect(30, 30, 100, 1, 1);
+			addSprite(hitbox);
+			sp = new SpriteObject(this, 0, 0);
+			addSprite(sp)
+			.addTexture(Gdx.files.internal("data/testy/Pufa_Ma³a.png"));
+			break;
+		}
+		case MebleId.kaloryfer: {
+			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.StaticBody);
+			((PhysicSpriteRect) hitbox).createRect(200, 30, 1, 1, 1);
+			addSprite(hitbox);
+			sp = new SpriteObject(this, 0, 0);
+			addSprite(sp)
+			.addTexture(Gdx.files.internal("data/testy/kaloryfer.png"));
+			break;
 		}
 		}
-	
 	}
 	
 	public void update(float delta, float vx, float vy) {
@@ -96,8 +141,40 @@ public class Mebl extends PhysicObject{
 		switch(type){
 		case MebleId.pufa: {
 			sp.position.set(hitbox.position);
+			sp.alfa=(float)(hitbox.body.getAngle()*180/Math.PI);
+			hitbox.body.setAngularVelocity(hitbox.body.getAngularVelocity()*0.95f);
 			sclVel(0.96f);
 			sp2.position.set(hitbox2.position.x,hitbox2.position.y);
+			sp2.alfa=(float)(hitbox2.body.getAngle()*180/Math.PI);
+			hitbox2.body.setAngularVelocity(hitbox2.body.getAngularVelocity()*0.95f);
+			break;
+		}
+		case MebleId.krzeslo: {
+			sp.position.set(hitbox.position);
+			sp.alfa=(float) (hitbox.body.getAngle()*180/Math.PI);
+			sclVel(0.95f);
+			hitbox.body.setAngularVelocity(hitbox.body.getAngularVelocity()*0.95f);
+			break;
+		}
+		case MebleId.pufajedzenie: {
+			sp.position.set(hitbox.position);
+			sp.alfa=(float) (hitbox.body.getAngle()*180/Math.PI);
+			sclVel(0.95f);
+			hitbox.body.setAngularVelocity(hitbox.body.getAngularVelocity()*0.95f);
+			break;
+		}
+		case MebleId.stolek: {
+			sp.position.set(hitbox.position);
+			sp.alfa=(float) (hitbox.body.getAngle()*180/Math.PI);
+			sclVel(0.95f);
+			hitbox.body.setAngularVelocity(hitbox.body.getAngularVelocity()*0.95f);
+			break;
+		}
+		case MebleId.pufa_mala: {
+			sp.position.set(hitbox.position);
+			sp.alfa=(float) (hitbox.body.getAngle()*180/Math.PI);
+			sclVel(0.95f);
+			hitbox.body.setAngularVelocity(hitbox.body.getAngularVelocity()*0.95f);
 			break;
 		}
 		}
