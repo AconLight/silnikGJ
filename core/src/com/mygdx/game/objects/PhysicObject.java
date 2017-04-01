@@ -26,6 +26,11 @@ public class PhysicObject extends GameObject{
 		return (PhysicSpriteObject) spriteObjects.get(spriteObjects.size()-1);
 	}
 	
+	public SpriteObject addSprite(SpriteObject e) {
+		spriteObjects.add(e);
+		return spriteObjects.get(spriteObjects.size()-1);
+	}
+	
 	public PhysicSpriteObject addSprite() {
 		spriteObjects.add(new PhysicSpriteObject(world, this, 0, 0));
 		return (PhysicSpriteObject) spriteObjects.get(spriteObjects.size()-1);
@@ -45,15 +50,16 @@ public class PhysicObject extends GameObject{
 	
 	public void applyForce(float vx, float vy) {
 		for(int i = 0; i < spriteObjects.size(); i++) {
-			if (((PhysicSpriteObject)spriteObjects.get(i)).body != null ) {
+			if (spriteObjects.get(i).isPhysic && ((PhysicSpriteObject)spriteObjects.get(i)).body != null ) {
 				((PhysicSpriteObject)spriteObjects.get(i)).body.applyForceToCenter(vx, vy, true);
 			}
+
 		}
 	}
 	
 	public void sclVel(float scl) {
 		for(int i = 0; i < spriteObjects.size(); i++) {
-			if (((PhysicSpriteObject)spriteObjects.get(i)).body != null ) {
+			if (spriteObjects.get(i).isPhysic && ((PhysicSpriteObject)spriteObjects.get(i)).body != null ) {
 				((PhysicSpriteObject)spriteObjects.get(i)).body.setLinearVelocity
 				(((PhysicSpriteObject)spriteObjects.get(i)).body.getLinearVelocity().scl(scl));
 			}
