@@ -21,6 +21,18 @@ public class Mebl extends PhysicObject{
 	
 	void set(int type,float x,float y) {
 		switch(type){
+		case MebleId.sciana: {
+			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.StaticBody);
+			((PhysicSpriteRect) hitbox).createRect(2000, 25, 1, 1, 1);
+			addSprite(hitbox);
+			break;
+		}
+		case MebleId.sciana2: {
+			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.StaticBody);
+			((PhysicSpriteRect) hitbox).createRect(25, 1500, 1, 1, 1);
+			addSprite(hitbox);
+			break;
+		}
 		case MebleId.wiktor: {
 			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.StaticBody);
 			((PhysicSpriteRect) hitbox).createRect(155, 77, 1, 1, 1);
@@ -133,6 +145,28 @@ public class Mebl extends PhysicObject{
 			.addTexture(Gdx.files.internal("data/testy/kaloryfer.png"));
 			break;
 		}
+		case MebleId.tron: {
+			hitbox = new PhysicSpriteRect(world, this, x-35, y,BodyType.StaticBody);
+			((PhysicSpriteRect) hitbox).createRect(45, 80, 1, 1, 1);
+			addSprite(hitbox);
+			hitbox2 = new PhysicSpriteRect(world, this, x+45, y,BodyType.StaticBody);
+			((PhysicSpriteRect) hitbox2).createRect(35, 50, 1, 1, 1);
+			addSprite(hitbox2);
+			sp = new SpriteObject(this, 0, 0);
+			addSprite(sp)
+			.addTexture(Gdx.files.internal("data/testy/tron.png"));
+			break;
+		}
+		case MebleId.fotel: {
+			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.StaticBody);
+			((PhysicSpriteRect) hitbox).createRect(60, 54, 1, 1, 1);
+			addSprite(hitbox);
+			sp = new SpriteObject(this, 0, 0);
+			addSprite(sp)
+			.addTexture(Gdx.files.internal("data/testy/fotel.png"));
+			break;
+		}
+		
 		}
 	}
 	
