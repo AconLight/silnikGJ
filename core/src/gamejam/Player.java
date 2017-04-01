@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.gameobjects.PhysicSpriteKulka;
 import com.mygdx.game.objects.PhysicObject;
+import com.mygdx.game.settings.GameVars;
 
 public class Player extends PhysicObject{
 	PhysicSpriteKulka hitbox;
@@ -51,7 +52,18 @@ public class Player extends PhysicObject{
 		}
 		
 			sclVel(0.95f);
-
+		
+			float v = (float) (GameVars.box2dScale*Math.sqrt(hitbox.body.getLinearVelocity().x*hitbox.body.getLinearVelocity().x + hitbox.body.getLinearVelocity().y*hitbox.body.getLinearVelocity().y));
+			if (v != 0) {
+				if (hitbox.body.getLinearVelocity().x >= 0)
+					hitbox.alfa = (float) Math.asin(hitbox.body.getLinearVelocity().y*GameVars.box2dScale/v);
+				else 
+					hitbox.alfa = (float) (Math.PI - Math.asin(hitbox.body.getLinearVelocity().y*GameVars.box2dScale/v));
+			}
+			else {
+				hitbox.alfa = 0;			
+			}
+			hitbox.alfa = (float) Math.toDegrees(hitbox.alfa);
 
 	}
 	
