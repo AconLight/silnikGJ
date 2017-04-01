@@ -1,8 +1,10 @@
 package gamejam;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.gameobjects.PhysicSpriteKulka;
+import com.mygdx.game.gameobjects.PhysicSpriteRect;
 import com.mygdx.game.objects.PhysicObject;
 import com.mygdx.game.objects.PhysicSpriteObject;
 import com.mygdx.game.objects.SpriteObject;
@@ -17,14 +19,14 @@ public class Mebl extends PhysicObject{
 	void set(int type,float x,float y) {
 		switch(type){
 		case MebleId.wiktor: {
-			hitbox = new PhysicSpriteKulka(world, this, x, y);
-			((PhysicSpriteKulka) hitbox).createBall(30, 1, 1, 1);
+			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.StaticBody);
+			((PhysicSpriteRect) hitbox).createRect(100, 100, 1, 1, 1);
 			addSprite(hitbox)
 			.addTexture(Gdx.files.internal("data/Wiktor.png"));
 			break;
 		}
 		case MebleId.pufa: {
-			hitbox = new PhysicSpriteRect(world, this, 0, 0);
+			hitbox = new PhysicSpriteKulka(world, this, 0, 0,BodyType.StaticBody);
 			((PhysicSpriteKulka) hitbox).createBall(30, 1, 1, 1);
 			addSprite(new SpriteObject())
 			.addTexture(Gdx.files.internal("data/pufa.png"));
