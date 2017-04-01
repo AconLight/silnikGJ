@@ -3,6 +3,7 @@ package gamejam;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.mygdx.game.gameobjects.PhysicSpriteKulka;
@@ -15,12 +16,13 @@ public class Human extends PhysicObject{
 	float tab[] = new float[12];
 	float time;
 	float drenka;
-	PhysicSpriteKulka hitbox;
+	public PhysicSpriteKulka hitbox;
 	SpriteObject lewa, prawa, glowa;
 	public boolean isW, isS, isD, isA;
 	float alfa;
 	float speed;
-	public Human(World world, float x, float y) {
+	public boolean isTriggered = false;
+	public Human(World world, float x, float y, float speed) {
 		super(world, x, y);
 		g = new Random();
 		for(int j = 0; j < 12; j++) {
@@ -47,7 +49,7 @@ public class Human extends PhysicObject{
 		addSprite(glowa)
 		.addTexture(Gdx.files.internal("data/glowa" + (g.nextInt(3) + 1) + ".png"));
 		
-		speed = 500;
+		this.speed = speed;
 	}
 	
 	public void update(float delta, float vx, float vy) {
@@ -113,8 +115,13 @@ public class Human extends PhysicObject{
 			glowa.position.set(hitbox.position);
 			}
 	
-	public void move(float alfa) {
-		this.alfa = alfa;		
+	public void setTarget(Vector2 playerPos) {
+		if (isTriggered) {
+		float dx = playerPos.x - hitbox.position.x;
+		float dy = playerPos.y - hitbox.position.y;
+		float dr = (float) Math.sqrt(dx*dx + dy*dy);
+		applyForce(GameVars.box2dScale*Stats.maxSpeed/10*dx/dr, GameVars.box2dScale*Stats.maxSpeed/10*dy/dr);
+		}
 	}
 
 }

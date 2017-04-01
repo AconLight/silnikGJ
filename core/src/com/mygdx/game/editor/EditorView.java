@@ -23,7 +23,7 @@ public class EditorView {
 		
 		batch.begin();
 		for(int i = 0; i < model.sceneIds.size(); i++) {
-			model.scenes.get(model.sceneIds.get(i)).render(batch);
+			model.scenes.get(model.sceneIds.get(i)).render(batch, 1);
 		}
 		batch.setProjectionMatrix(model.getCam().combined);
 		//Gdx.app.log("rendered", "view");

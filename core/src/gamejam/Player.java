@@ -1,5 +1,7 @@
 package gamejam;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
@@ -11,13 +13,17 @@ import com.mygdx.game.settings.GameVars;
 public class Player extends PhysicObject{
 	float time;
 	float drenka;
-	PhysicSpriteKulka hitbox;
+	public PhysicSpriteKulka hitbox;
+	public ArrayList<Proj> projs;
+	public int projId;
 	SpriteObject lewa, prawa;
 	public boolean isW, isS, isD, isA;
 	float alfa;
 	float speed;
+	public boolean isDead;
 	public Player(World world, float x, float y) {
 		super(world, x, y);
+		isDead = false;
 		hitbox = new PhysicSpriteKulka(world, this, x, y, BodyType.DynamicBody);
 		hitbox.createBall(50, 10, 1, 1);
 		
@@ -34,10 +40,17 @@ public class Player extends PhysicObject{
 		addSprite(hitbox)
 		.addTexture(Gdx.files.internal("data/kadlub.png"));
 		
+		projs = new ArrayList<Proj>();
+		for(int i = 0; i < 16; i++) {
+			projs.add(new Proj(world, this, 0, 0));
+		}
+		spriteObjects.addAll(projs);
+		projId = 0;
 		speed = 5000;
 	}
 	
 	public void update(float delta, float vx, float vy) {
+		if(!isDead) {
 		super.update(delta, vx, vy);
 		Gdx.app.log("asdasdasd", " " + hitbox.body.getLinearVelocity().x);
 		/*if (hitbox.body.getLinearVelocity().x*hitbox.body.getLinearVelocity().x + 
@@ -48,7 +61,7 @@ public class Player extends PhysicObject{
 		}*/
 		
 
-		speed = 5000;
+		speed = 4000;
 			
 		
 		if (isW && hitbox.body.getLinearVelocity().y < Stats.maxSpeed) {
@@ -90,11 +103,18 @@ public class Player extends PhysicObject{
 			drenka = (float) (Math.sin(time*5)*v/40);
 			prawa.position.set(hitbox.position.x + drenka * (float)Math.cos((alfa)), hitbox.position.y + drenka * (float)Math.sin((alfa)));
 			lewa.position.set(hitbox.position.x - drenka * (float)Math.cos((alfa)), hitbox.position.y - drenka * (float)Math.sin((alfa)));
-
-	}
 	
+		
+		}
+	}
 	public void move(float alfa) {
 		this.alfa = alfa;		
+	}
+	public void throwProj() {
+		projs.get(projId).position.set(hitbox.position);
+		projs.get(projId).throwProj(alfa, hitbox.body.getLinearVelocity().x*GameVars.box2dScale, hitbox.body.getLinearVelocity().y*GameVars.box2dScale);
+		projId++;
+		if (projId > projs.size()-1) projId = 0;
 	}
 
 }

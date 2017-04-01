@@ -20,15 +20,30 @@ public class View {
 	}
 	
 	public void render() {
-		
+		float x = model.getCam().position.x - GameVars.gameWidth/2;
+		float y = model.getCam().position.y - GameVars.gameHeight/2;
+		model.getCam().translate(-x, -y);
+		model.getCam().update();
 		batch.begin();
 		for(int i = 0; i < model.sceneIds.size(); i++) {
-			model.scenes.get(model.sceneIds.get(i)).render(batch);
+			model.scenes.get(model.sceneIds.get(i)).render(batch, 1);
 		}
 		batch.setProjectionMatrix(model.getCam().combined);
 		Gdx.app.log("rendered", "view");
 		batch.end();
-		debugRenderer.render(model.scenes.get(0).getWorld(), model.getCam2().combined);
+		
+		model.getCam().translate(x, y);
+		model.getCam().update();
+		
+		batch.begin();
+		for(int i = 0; i < model.sceneIds.size(); i++) {
+			model.scenes.get(model.sceneIds.get(i)).render(batch, 2);
+		}
+		batch.setProjectionMatrix(model.getCam().combined);
+		Gdx.app.log("rendered", "view");
+		batch.end();
+		
+		//debugRenderer.render(model.scenes.get(0).getWorld(), model.getCam2().combined);
 
 	}
 }
