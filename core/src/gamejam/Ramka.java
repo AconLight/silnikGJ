@@ -9,11 +9,15 @@ import com.mygdx.game.settings.GameVars;
 public class Ramka extends Sprajt{
 	SpriteObject ramka;
 	SpriteObject text;
+	SpriteObject text2;
+	SpriteObject triggered;
+	SpriteObject kobietysa;
 	SpriteObject korwin;
 	SpriteObject korwin1;
 	SpriteObject korwin2;
 	SpriteObject femi; 
 	SpriteObject nosal;
+	SpriteObject nosacz;
 	SpriteObject testo;
 	
 	boolean up = false;
@@ -39,6 +43,11 @@ public class Ramka extends Sprajt{
 	
 	public void ramkaKorwin(){
 		
+		text = new SpriteObject(this, 0, 0);
+		addSprite(text)
+		.addTexture(Gdx.files.internal("data/text.png"))
+		.isVisible = false;
+		
 		korwin = new SpriteObject(this, -GameVars.gameWidth/2 - 200, 0);
 		addSprite(korwin)
 		.addTexture(Gdx.files.internal("data/korwinramka.png"))
@@ -57,11 +66,21 @@ public class Ramka extends Sprajt{
 		femi = new SpriteObject(this, GameVars.gameWidth/2 + 200, 0);
 		addSprite(femi)
 		.addTexture(Gdx.files.internal("data/feministka.png"))
+		.addTexture(Gdx.files.internal("data/feministkaalert.png"))
 		.isVisible = true;
-		
-		text = new SpriteObject(this, 0, -300);
-		addSprite(text)
-		.addTexture(Gdx.files.internal("data/text.png"))
+		femi.frameTime = 9999999; 
+				
+		triggered = new SpriteObject(this, 0, -300);
+		addSprite(triggered)
+		.addTexture(Gdx.files.internal("data/triggered.png"))
+		.addTexture(Gdx.files.internal("data/triggered2.png"))
+		.isVisible = true;
+		triggered.frameTime = 0.5f; 
+		//triggered.frameNum = 0; 
+
+		kobietysa = new SpriteObject(this, 0, -300);
+		addSprite(kobietysa)
+		.addTexture(Gdx.files.internal("data/kobietysa.png"))
 		.isVisible = true;
 		
 		ramka = new SpriteObject(this, 0, 0);
@@ -74,6 +93,11 @@ public class Ramka extends Sprajt{
 
 	public void ramkaNosal(){
 		
+		text2 = new SpriteObject(this, 0, 0);
+		addSprite(text2)
+		.addTexture(Gdx.files.internal("data/text.png"))
+		.isVisible = false;
+		
 		testo = new SpriteObject(this, -GameVars.gameWidth/2 - 200, 0);
 		addSprite(testo)
 		.addTexture(Gdx.files.internal("data/testo.png"))
@@ -82,12 +106,23 @@ public class Ramka extends Sprajt{
 		nosal = new SpriteObject(this, GameVars.gameWidth/2 + 200, 0);
 		addSprite(nosal)
 		.addTexture(Gdx.files.internal("data/nosacz.png"))
+		.addTexture(Gdx.files.internal("data/nosacz0.png"))
 		.isVisible = true;
-		
-		text = new SpriteObject(this, 0, -300);
-		addSprite(text)
-		.addTexture(Gdx.files.internal("data/text.png"))
+		nosal.frameTime = 999999; 
+				
+		triggered = new SpriteObject(this, 0, -300);
+		addSprite(triggered)
+		.addTexture(Gdx.files.internal("data/triggered.png"))
+		.addTexture(Gdx.files.internal("data/triggered2.png"))
 		.isVisible = true;
+		triggered.frameTime = 0.5f; 
+		//triggered.frameNum = 0; 
+
+		nosacz = new SpriteObject(this, 0, -300);
+		addSprite(nosacz)
+		.addTexture(Gdx.files.internal("data/nosacz1.png"))
+		.isVisible = true;
+
 		
 		ramka = new SpriteObject(this, 0, 0);
 		addSprite(ramka)
@@ -127,11 +162,12 @@ public class Ramka extends Sprajt{
 	}
 	
 	public void update(float delta, float vx, float vy){
-
+		super.update(delta, vx, vy);
 		switch (ktoraRamkaKurwa){
 		case 1:
 			if(ktoraRamka == 1){
 				ramka.isVisible = true; 
+				text.isVisible = true;
 				if(korwin.position.x < (-GameVars.gameWidth/2 + position.x + 200)) korwin.position.x += delta*speed;
 				else{
 					korwin1.isVisible = true;
@@ -143,28 +179,29 @@ public class Ramka extends Sprajt{
 				if(femi.position.x > (GameVars.gameWidth/2 + position.x - 200)) femi.position.x -= delta*speed;
 				else femi.position.x = GameVars.gameWidth/2 + position.x - 200;
 			
-				if(text.position.y < ( position.y - 100)) text.position.y += delta*(0.5*speed);
-				else{ text.position.y = position.y - 100;
+				if( kobietysa.position.y < ( position.y - 100))  kobietysa.position.y += delta*(0.5*speed);
+				else{  kobietysa.position.y = position.y - 100;
 					//ktoraRamka++;
 				}
 
 				
 			}
 
-			else if(ktoraRamka == 2){
-
-				if(text.position.y < -150) ktoraRamka++;
-				else text.position.y -= delta*(speed);
-				
+			 if(ktoraRamka == 2){
+				triggered.position.y = position.y - 100; 
+				femi.frameTime = 0.5f;  
+				if( kobietysa.position.y < -150) ktoraRamka++;
+				else kobietysa.position.y -= delta*(speed);
+				//ktoraRamka++;
 			}
 			
 			else if(ktoraRamka == 3){
 
-					
-				if(text.position.y < ( position.y - 100)) text.position.y += delta*(0.5*speed);
-				else{ text.position.y = position.y - 100;
+				 triggered.position.y = position.y - 100;
+				//if(triggered.position.y < ( position.y - 100)) triggered.position.y += delta*(0.5*speed);
+				//else{ triggered.position.y = position.y - 100;
 				//ktoraRamka++;
-			}
+			//}
 				
 			}
 			
@@ -176,50 +213,61 @@ public class Ramka extends Sprajt{
 				
 				if(femi.position.x <= (GameVars.gameWidth/2 + position.x + 200)) femi.position.x += delta*(1.5*speed);
 				
-				if(text.position.y < -150) ramka.isVisible = false;
-				else text.position.y -= delta*(speed);
-				
+				if(triggered.position.y < -150){
+					ramka.isVisible = false;
+					text.isVisible = false;                         
+				}
+				else triggered.position.y -= delta*(speed);
+				 ktoraRamka = 0;
 			}
+			
 		break;
 		case 2:
 			if(ktoraRamka == 1){
 				ramka.isVisible = true; 
-				if(testo.position.x < (-GameVars.gameWidth/2 + position.x + 200)) testo.position.x += delta*speed;
-				else testo.position.x = -GameVars.gameWidth/2 + position.x + 200;
+				text2.isVisible = true;
+				if(testo.position.x < (-GameVars.gameWidth/2 + position.x + 198)) testo.position.x += delta*speed;
+
 				
 				if(nosal.position.x > (GameVars.gameWidth/2 + position.x - 200)) nosal.position.x -= delta*speed;
 				else nosal.position.x = GameVars.gameWidth/2 + position.x - 200;
 			
-				if(text.position.y < ( position.y - 100)) text.position.y += delta*(0.5*speed);
-				else{ text.position.y = position.y - 100;
-				//	ktoraRamka++;
+				if( nosacz.position.y < ( position.y - 100))  nosacz.position.y += delta*(0.5*speed);
+				else{  nosacz.position.y = position.y - 100;
+					//ktoraRamka++;
 				}
-
+		
 			}
 
 			else if(ktoraRamka == 2){
-
-				if(text.position.y < -150) ktoraRamka++;
-				else text.position.y -= delta*(speed);
 				
+				if( nosacz.position.y < -150) ktoraRamka++;
+				else nosacz.position.y -= delta*(speed);
+				//ktoraRamka++;
 			}
 			
 			else if(ktoraRamka == 3){
-
-					
-				if(text.position.y < ( position.y - 100)) text.position.y += delta*(0.5*speed);
-				else{ text.position.y = position.y - 100;
+				nosal.frameTime = 0.5f; 
+				 triggered.position.y = position.y - 100;
+				//if(triggered.position.y < ( position.y - 100)) triggered.position.y += delta*(0.5*speed);
+				//else{ triggered.position.y = position.y - 100;
 				//ktoraRamka++;
-				}
+			//}
 				
 			}
 			
 			else if(ktoraRamka == 4){
 				if(testo.position.x >= (-GameVars.gameWidth/2 + position.x - 200)) testo.position.x -= delta*(1.5*speed);
+				
+				
 				if(nosal.position.x <= (GameVars.gameWidth/2 + position.x + 200)) nosal.position.x += delta*(1.5*speed);
-				if(text.position.y < -150) ramka.isVisible = false;
-				else text.position.y -= delta*(speed);
-		
+				
+				if(triggered.position.y < -150){
+					ramka.isVisible = false;
+					text2.isVisible = false;                         
+				}
+				else triggered.position.y -= delta*(speed);
+				ktoraRamka = 0;
 			}
 		break;
 		}
