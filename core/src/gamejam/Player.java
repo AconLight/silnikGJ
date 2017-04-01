@@ -18,7 +18,7 @@ public class Player extends PhysicObject{
 	public int projId;
 	SpriteObject lewa, prawa;
 	public boolean isW, isS, isD, isA;
-	float alfa;
+	float alfa, alfa2;
 	float speed;
 	public boolean isDead;
 	public Player(World world, float x, float y) {
@@ -62,28 +62,69 @@ public class Player extends PhysicObject{
 		
 
 		speed = 4000;
-			
-		
+
+		float v = (float) (GameVars.box2dScale*Math.sqrt(hitbox.body.getLinearVelocity().x*hitbox.body.getLinearVelocity().x + hitbox.body.getLinearVelocity().y*hitbox.body.getLinearVelocity().y));
+		if (v != 0) {
+			if (hitbox.body.getLinearVelocity().x >= 0)
+				hitbox.alfa = (float) Math.asin(hitbox.body.getLinearVelocity().y*GameVars.box2dScale/v);
+			else 
+				hitbox.alfa = (float) (Math.PI - Math.asin(hitbox.body.getLinearVelocity().y*GameVars.box2dScale/v));
+		}
+		else {
+			hitbox.alfa = 0;			
+		}
+		int i = 1;
+		alfa = hitbox.alfa;
+		hitbox.alfa = (float) Math.toDegrees(hitbox.alfa);
+		alfa = hitbox.alfa;
+		alfa2 = 0;
+		i = 0;
 		if (isW && hitbox.body.getLinearVelocity().y < Stats.maxSpeed) {
-			alfa = 90;
-			applyForce((float)(Math.cos(Math.toRadians(alfa))*speed*delta), (float)(Math.sin(Math.toRadians(alfa))*speed*delta));
+			alfa2 += 90;
+			
+			i++;
+			
 		}
 		if (isA && hitbox.body.getLinearVelocity().x > -Stats.maxSpeed) {
-			alfa = 180;
-			applyForce((float)(Math.cos(Math.toRadians(alfa))*speed*delta), (float)(Math.sin(Math.toRadians(alfa))*speed*delta));
+			alfa2 += 180;
+			i++;
+			
 		}
 		if (isS && hitbox.body.getLinearVelocity().y > -Stats.maxSpeed) {
-			alfa = 270;
-			applyForce((float)(Math.cos(Math.toRadians(alfa))*speed*delta), (float)(Math.sin(Math.toRadians(alfa))*speed*delta));
+			alfa2 += 290;
+			i++;
+			
 		}
 		if (isD && hitbox.body.getLinearVelocity().x < Stats.maxSpeed) {
-			alfa = 0;
-			applyForce((float)(Math.cos(Math.toRadians(alfa))*speed*delta), (float)(Math.sin(Math.toRadians(alfa))*speed*delta));
+			if (alfa2 > 180) alfa2 += 360;
+			i++;
 		}
+		speed = 6000*50000/(50000+v*v);
+		//alfa2 = alfa2%360;
+		if (i != 0) {
+			alfa2 /= i;
+		}
+		else {
+			speed = 0;
+			alfa2 = alfa;
+		}
+		if (alfa - alfa2 > 180) {
+			alfa += (alfa2-180)*5;
+			alfa /= 6;
+		}
+		else {
+			alfa += (alfa2)*5;
+			alfa /= 6;
+		}
+		alfa = alfa2;
 		
-			sclVel(0.95f);
 		
-			float v = (float) (GameVars.box2dScale*Math.sqrt(hitbox.body.getLinearVelocity().x*hitbox.body.getLinearVelocity().x + hitbox.body.getLinearVelocity().y*hitbox.body.getLinearVelocity().y));
+			
+		applyForce((float)(Math.cos(Math.toRadians(alfa))*speed*delta), (float)(Math.sin(Math.toRadians(alfa))*speed*delta));
+		
+			sclVel(0.97f);
+		
+			v = (float) (GameVars.box2dScale*Math.sqrt(hitbox.body.getLinearVelocity().x*hitbox.body.getLinearVelocity().x + hitbox.body.getLinearVelocity().y*hitbox.body.getLinearVelocity().y));
 			if (v != 0) {
 				if (hitbox.body.getLinearVelocity().x >= 0)
 					hitbox.alfa = (float) Math.asin(hitbox.body.getLinearVelocity().y*GameVars.box2dScale/v);
