@@ -20,4 +20,8 @@ public class MebleId {
 	public static final int tron=14;
 	public static final int fotel=15;
 	public static final int subway=17;
+	public static final int stol2=18;
+	public static final int krzeslo2=19;
+	public static final int scianapoziom=20;
+	public static final int scianapion=21;
 }

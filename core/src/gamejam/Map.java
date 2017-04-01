@@ -30,23 +30,48 @@ public class Map {
 		mapObjects.add(sciana3);
 		Mebl sciana4 = new Mebl(scene.getWorld(), -1985, 0, MebleId.sciana2);
 		mapObjects.add(sciana4);
+		Mebl sciana5 = new Mebl(scene.getWorld(), -1025, -1250, MebleId.scianapion);
+		mapObjects.add(sciana5);
+		Mebl sciana6 = new Mebl(scene.getWorld(), -1025, -650, MebleId.scianapion);
+		mapObjects.add(sciana6);
+		Mebl sciana7 = new Mebl(scene.getWorld(), -1225, -500, MebleId.scianapoziom);
+		mapObjects.add(sciana7);
+		Mebl sciana8 = new Mebl(scene.getWorld(), -1625, -500, MebleId.scianapoziom);
+		mapObjects.add(sciana8);
+		Mebl sciana9 = new Mebl(scene.getWorld(), -1800, -500, MebleId.scianapoziom);
+		mapObjects.add(sciana9);
 		Mebl pufa = new Mebl(scene.getWorld(), 300, 350, MebleId.pufa);
 		mapObjects.add(pufa);
 		Mebl banany = new Mebl(scene.getWorld(), 700, 700, MebleId.banany);
 		mapObjects.add(banany);
 		Mebl pizza = new Mebl(scene.getWorld(), 700, 200, MebleId.pizza);
 		mapObjects.add(pizza);
-		Mebl krzeslo = new Mebl(scene.getWorld(), 860, 200, MebleId.krzeslo);
+		Mebl krzeslo = new Mebl(scene.getWorld(), -1200, 950, MebleId.krzeslo);
 		mapObjects.add(krzeslo);
+		Mebl krzeslo2 = new Mebl(scene.getWorld(),-280, 950, MebleId.krzeslo);
+		mapObjects.add(krzeslo2);
+		Mebl krzeslo3 = new Mebl(scene.getWorld(), -500, 650, MebleId.krzeslo2);
+		mapObjects.add(krzeslo3);
+		Mebl krzeslo4 = new Mebl(scene.getWorld(), -280, 650, MebleId.krzeslo2);
+		mapObjects.add(krzeslo4);
+		
 		Mebl pufa2 = new Mebl(scene.getWorld(), 800, 800, MebleId.pufajedzenie);
 		mapObjects.add(pufa2);
 		Mebl stolek = new Mebl(scene.getWorld(), 800, 600, MebleId.stolek);
 		mapObjects.add(stolek);
+		Mebl stolek2 = new Mebl(scene.getWorld(), -1000, 950, MebleId.stolek);
+		mapObjects.add(stolek2);
+		Mebl stolek3 = new Mebl(scene.getWorld(), -500, 950, MebleId.stolek);
+		mapObjects.add(stolek3);
+		Mebl stolek4 = new Mebl(scene.getWorld(), -1000, 650, MebleId.stolek);
+		mapObjects.add(stolek4);
+		Mebl stolek5 = new Mebl(scene.getWorld(), -1200, 650, MebleId.stolek);
+		mapObjects.add(stolek5);
 		Mebl szafka = new Mebl(scene.getWorld(), 1000, 1000, MebleId.szafka);
 		mapObjects.add(szafka);
 		Mebl pufa3 = new Mebl(scene.getWorld(), 1000, 500, MebleId.pufa_mala);
 		mapObjects.add(pufa3);
-		Mebl kaloryfer = new Mebl(scene.getWorld(), 1700, 900, MebleId.kaloryfer);
+		Mebl kaloryfer = new Mebl(scene.getWorld(), 900, -1435, MebleId.kaloryfer);
 		mapObjects.add(kaloryfer);
 		Mebl tron = new Mebl(scene.getWorld(), 1450, 1000, MebleId.tron);
 		mapObjects.add(tron);
@@ -116,6 +141,8 @@ public class Map {
 		mapObjects.add(sub24);
 		Mebl stol = new Mebl(scene.getWorld(), -400,800 , MebleId.stol);
 		mapObjects.add(stol);
+		Mebl stol2 = new Mebl(scene.getWorld(), -1100,800 , MebleId.stol2);
+		mapObjects.add(stol2);
 		
 		
 		
