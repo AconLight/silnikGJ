@@ -71,6 +71,10 @@ public class Controller implements InputProcessor{
 			model.getScene().player.isA = false;
 			break;
 		}
+		case Keys.SPACE: {
+			model.getScene().player.throwProj();
+			break;
+		}
 		}
 		return false;
 	}

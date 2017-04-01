@@ -1,6 +1,7 @@
 package gamejam;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.mygdx.game.objects.SpriteObject;
 import com.mygdx.game.settings.GameVars;
 
@@ -18,10 +19,11 @@ public class Ramka extends Sprajt{
 	int speed = 300;
 	int ktoraRamkaKurwa;
 	int ktoraRamka = 0;
+	private OrthographicCamera cam;
 	
-	
-	public Ramka(float x, float y) {
+	public Ramka(float x, float y, OrthographicCamera cam ) {
 		super(x, y);
+		this.cam = cam;
 		// TODO Auto-generated constructor stub
 	}
 	
