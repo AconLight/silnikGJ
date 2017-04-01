@@ -1,12 +1,62 @@
 package gamejam;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.World;
+import com.mygdx.game.gameobjects.PhysicSpriteKulka;
+import com.mygdx.game.objects.PhysicObject;
 
-public class Player extends Ruchable{
-
+public class Player extends PhysicObject{
+	PhysicSpriteKulka hitbox;
+	public boolean isW, isS, isD, isA;
+	float alfa;
+	float speed;
 	public Player(World world, float x, float y) {
 		super(world, x, y);
-		// TODO Auto-generated constructor stub
+		hitbox = new PhysicSpriteKulka(world, this, x, y);
+		hitbox.createBall(50, 10, 1, 1);
+		addSprite(hitbox)
+		.addTexture(Gdx.files.internal("data/badlogic.jpg"));
+		speed = 5000;
+	}
+	
+	public void update(float delta, float vx, float vy) {
+		super.update(delta, vx, vy);
+		Gdx.app.log("asdasdasd", " " + hitbox.body.getLinearVelocity().x);
+		/*if (hitbox.body.getLinearVelocity().x*hitbox.body.getLinearVelocity().x + 
+				hitbox.body.getLinearVelocity().y*hitbox.body.getLinearVelocity().y < Stats.maxSpeed*Stats.maxSpeed)
+			applyForce((float)(Math.cos(Math.toRadians(alfa))*speed*delta), (float)(Math.sin(Math.toRadians(alfa))*speed*delta));
+		else {
+			applyForce((float)(-Math.cos(Math.toRadians(alfa))*speed*delta), (float)(-Math.sin(Math.toRadians(alfa))*speed*delta));
+		}*/
+		
+
+		speed = 5000;
+			
+		int i = 0;
+		if (isW && hitbox.body.getLinearVelocity().y < Stats.maxSpeed) {
+			alfa = 90;
+			applyForce((float)(Math.cos(Math.toRadians(alfa))*speed*delta), (float)(Math.sin(Math.toRadians(alfa))*speed*delta));
+		}
+		if (isA && hitbox.body.getLinearVelocity().x > -Stats.maxSpeed) {
+			alfa = 180;
+			applyForce((float)(Math.cos(Math.toRadians(alfa))*speed*delta), (float)(Math.sin(Math.toRadians(alfa))*speed*delta));
+		}
+		if (isS && hitbox.body.getLinearVelocity().y > -Stats.maxSpeed) {
+			alfa = 270;
+			applyForce((float)(Math.cos(Math.toRadians(alfa))*speed*delta), (float)(Math.sin(Math.toRadians(alfa))*speed*delta));
+		}
+		if (isD && hitbox.body.getLinearVelocity().x < Stats.maxSpeed) {
+			alfa = 0;
+			applyForce((float)(Math.cos(Math.toRadians(alfa))*speed*delta), (float)(Math.sin(Math.toRadians(alfa))*speed*delta));
+		}
+		
+			sclVel(0.95f);
+
+
+	}
+	
+	public void move(float alfa) {
+		this.alfa = alfa;		
 	}
 
 }

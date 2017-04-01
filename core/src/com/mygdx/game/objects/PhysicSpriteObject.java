@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.joints.DistanceJointDef;
@@ -58,6 +59,41 @@ public class PhysicSpriteObject extends SpriteObject{
 		fixtureDef.density = 0.5f; 
 		fixtureDef.friction = 0.4f;
 		fixtureDef.restitution = 0.6f; // Make it bounce a little bit
+		// Create our fixture and attach it to the body
+		return fixtureDef;
+		
+	}
+	
+	
+	
+	public FixtureDef setAsRect(float width, float height) {
+
+		// Create a circle shape and set its radius to 6
+		PolygonShape groundBox = new PolygonShape();  
+		groundBox.setAsBox(width/GameVars.box2dScale, height/GameVars.box2dScale);
+
+		// Create a fixture definition to apply our shape to
+		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef.shape = groundBox;
+		fixtureDef.density = 0.5f; 
+		fixtureDef.friction = 0.4f;
+		fixtureDef.restitution = 0.6f; // Make it bounce a little bit
+		// Create our fixture and attach it to the body
+		return fixtureDef;
+		
+	}
+	public FixtureDef setAsRect(float width, float height, float density, float friction, float restitution) {
+
+		// Create a circle shape and set its radius to 6
+		PolygonShape groundBox = new PolygonShape();  
+		groundBox.setAsBox(width/GameVars.box2dScale, height/GameVars.box2dScale);
+
+		// Create a fixture definition to apply our shape to
+		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef.shape = groundBox;
+		fixtureDef.density = density;
+		fixtureDef.friction = friction;
+		fixtureDef.restitution = restitution; // Make it bounce a little bit
 		// Create our fixture and attach it to the body
 		return fixtureDef;
 		
