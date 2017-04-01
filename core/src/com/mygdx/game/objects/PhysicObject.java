@@ -51,6 +51,15 @@ public class PhysicObject extends GameObject{
 		}
 	}
 	
+	public void sclVel(float scl) {
+		for(int i = 0; i < spriteObjects.size(); i++) {
+			if (((PhysicSpriteObject)spriteObjects.get(i)).body != null ) {
+				((PhysicSpriteObject)spriteObjects.get(i)).body.setLinearVelocity
+				(((PhysicSpriteObject)spriteObjects.get(i)).body.getLinearVelocity().scl(scl));
+			}
+		}
+	}
+	
 	public void update(float delta) {
 		super.update(delta, 0, 0);
 	}
