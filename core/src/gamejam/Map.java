@@ -17,6 +17,7 @@ public class Map {
 	}
 	
 	void set1(GameScene scene) {
+<<<<<<< HEAD
 		Mebl wiktor = new Mebl(scene.getWorld(), 400, 200, MebleId.wiktor);
 		mapObjects.add(wiktor);
 		Mebl stefan = new Mebl(scene.getWorld(), 400, 500, MebleId.stefan);
@@ -32,5 +33,9 @@ public class Map {
 		Mebl krzeslo = new Mebl(scene.getWorld(), 860, 200, MebleId.krzeslo);
 		mapObjects.add(krzeslo);
 		
+=======
+		//Mebl asd = new Mebl(scene.getWorld(), 200, 200, 1);
+		//mapObjects.add(asd);
+>>>>>>> master
 	}
 }
