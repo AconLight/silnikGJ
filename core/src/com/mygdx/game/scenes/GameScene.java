@@ -40,9 +40,6 @@ public class GameScene extends Scene{
 		addGameObject(pawian);
 		addGameObject(player);
 		hums.add(new Human(world, 700, 700, 500));
-		hums.add(new Human(world, 700, 700, 500));
-		hums.add(new Human(world, 700, 700, 500));
-		hums.add(new Human(world, 700, 700, 500));
 
 
 		gameObjects.addAll(hums);

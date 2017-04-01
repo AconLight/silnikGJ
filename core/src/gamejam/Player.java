@@ -25,7 +25,7 @@ public class Player extends PhysicObject{
 		super(world, x, y);
 		isDead = false;
 		hitbox = new PhysicSpriteKulka(world, this, x, y, BodyType.DynamicBody);
-		hitbox.createBall(50, 10, 1, 1);
+		hitbox.createBall(50, 10, 0, 0);
 		
 		lewa = new SpriteObject(this, 0, 0);
 		
