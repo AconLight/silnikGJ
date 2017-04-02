@@ -10,7 +10,7 @@ public class GameObject {
 	public int id;
 	public Vector2 position, velocity, acceleration, collisionAcc;
 	public ArrayList<SpriteObject> spriteObjects;
-	protected int objectViewPriority;
+	public int objectViewPriority;
 	public Hitbox hitbox;
 	
 	public GameObject(float x, float y) {

@@ -1,9 +1,0 @@
-diff a/core/src/com/mygdx/game/charakters/Character.java b/core/src/com/mygdx/game/charakters/Character.java	(rejected hunks)
-@@ -10,7 +10,6 @@
- public class Character extends GameObject {
- 	
- 	private ArrayList<Skill> skills;
--	
- 	//Twoja Stara
- 	public Character() {
- 		super(0, 0);

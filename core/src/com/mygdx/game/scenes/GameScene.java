@@ -35,8 +35,6 @@ import gamejam.Vaper;
 
 public class GameScene extends Scene{
 	float wirX, wirY;
-	float timer;
-	Random g = new Random();
 	public int score1 = 3;
 	public int score2 = 9 + 3;
 	public int score3 = 9 + 3;
@@ -52,6 +50,7 @@ public class GameScene extends Scene{
 	public Fem fem;
 	public Splash splash, splash2;
 	public int load;
+	public float timer;
 	public Music music = Gdx.audio.newMusic(Gdx.files.internal("data/track.mp3"));
 	public Sound s1 = Gdx.audio.newSound(Gdx.files.internal("data/amasz.mp3"));
 	public Sound s2 = Gdx.audio.newSound(Gdx.files.internal("data/bananowycios.mp3"));
@@ -84,14 +83,14 @@ public class GameScene extends Scene{
 	public Sound g5 = Gdx.audio.newSound(Gdx.files.internal("data/muzyka.mp3"));
 	public Sound t1 = Gdx.audio.newSound(Gdx.files.internal("data/bogactwo.mp3"));
 	public Sound fr1 = Gdx.audio.newSound(Gdx.files.internal("data/gotprank.mp3"));
-	
-	
-	
+	Random g = new Random();
 	public GameScene(OrthographicCamera cam) {
-		music.play();
-		timer = 0;
 		this.cam = cam;
+		music.play();
+		music.setLooping(true);
+		music.setVolume(0.6f);
 		load = 0;
+		timer = 0;
 		splash = new Splash(GameVars.gameWidth/2, GameVars.gameHeight/2);
 		addGameObject(splash);
 		
@@ -103,8 +102,7 @@ public class GameScene extends Scene{
 		hums = new ArrayList<Human>();
 		map = new Map(this);
 
-		pawian = new Pawian(world, 600, 300, 100);
-		addGameObject(pawian);
+
 		
 		player = new Player(world, 0, 0);
 		
@@ -129,28 +127,38 @@ public class GameScene extends Scene{
 	}
 	public void spawn1() {
 		hums.add(new Human(world, -700, 700, 500));
+
 		hums.add(new Human(world, 700, 700, 500));
 		hums.add(new Human(world, -700, 600, 500));
 
 		
+
 
 		gameObjects.addAll(hums);
 		score1 = hums.size();
 	}
 	public void spawn2() {
 		hums.add(new Human(world, -700, 700, 500));
+
 		hums.add(new Human(world, 700, 700, 500));
 		hums.add(new Human(world, -700, -700, 500));
 		hums.add(new Human(world, -700, 700, 500));
+
+
+
 		gameObjects.addAll(hums);
 		score2 = hums.size()+3;
 	}
 	public void spawn3() {
 		hums.add(new Human(world, -700, 700, 500));
+
 		hums.add(new Human(world, 700, 700, 500));
 		hums.add(new Human(world, -700, -700, 500));
 		hums.add(new Human(world, 700, 700, 500));
 		hums.add(new Human(world, -700, 700, 500));
+
+
+
 		gameObjects.addAll(hums);
 		score3 = hums.size()+6;
 	}
@@ -165,24 +173,32 @@ public class GameScene extends Scene{
 	public void update(float delta) {
 		Gdx.app.log("score", "" + score);
 		Gdx.app.log("score3", "" + score3);
-		if (player != null && player.isDead) {
-			//splash2 = new Splash(player.hitb, 0);
-			//splash2.start.objectViewPriority = 2;
+
+		if (player != null && player.isDead && splash2 == null) {
+			splash2 = new Splash(player.hitbox.position.x, player.hitbox.position.y);
+			splash2.start.objectViewPriority = 3;
 			//splash2.start.isVisible = false;
-			//splash2.start.frameTime = 99999;
-			//splash2.start.isVisible = true;
-			//splash2.start.frameNum = 3;
-			//addGameObject(splash2);
+			splash2.start.frameTime = 99999;
+			splash2.start.isVisible = true;
+			splash2.start.frameNum = 3;
+			addGameObject(splash2);
 		}
 		
 		if (timer >= 0) timer += delta;
 		if (timer > 8) {
 			timer = -1;
 		}
+
+
 		if (load >= 3) {
 		super.update(delta);
 		cam.position.set(player.hitbox.position.x, player.hitbox.position.y, 0);
 		cam.update();
+		
+		if (pawian != null && pawian.isDead && splash2 == null) {
+			
+		}
+		
 		
 		if (pawian != null && pawian.isVisible && pawian.isTriggered) {
 			pawian.setTarget(player.hitbox.position, 0.6f);
@@ -199,10 +215,10 @@ public class GameScene extends Scene{
 		if (fem != null && fem.isOver && score == score1) {
 			fem.hitbox.body.setActive(false);
 			score++;
-			k1.play();
-			ramka.przestaw(1);
+
 			pasek.setVap();
 		}
+
 		if (fem != null && !fem.isDead  && timer  < 0) {
 			timer = 0;
 			switch (g.nextInt(5)) {
@@ -330,6 +346,7 @@ public class GameScene extends Scene{
 			}
 		}
 		
+
 		
 		if (vaper != null && vaper.isDead && score == score2) {
 			vaper.hitbox.body.setActive(false);
@@ -344,6 +361,7 @@ public class GameScene extends Scene{
 			score = 1000;
 			t1.play();
 			ramka.przestaw(3);
+
 			pasek.setNosacz();
 		}
 		
@@ -378,9 +396,9 @@ public class GameScene extends Scene{
 					vaper.setTarget(player.hitbox.position, -1);
 					//wvaper.isVisible = false;
 					player.projs.get(i).isVisible = false;
-					if (vaper.lives < 0) {
+					if (vaper.lives < 0 && !vaper.isDead) {
 						vaper.isDead = true;
-						v4.play();
+						ramka.przestaw(2);
 					}
 					}
 					
@@ -392,9 +410,9 @@ public class GameScene extends Scene{
 				if (Math.sqrt(dx2*dx2 + dy2*dy2) < 50) {
 					pawian.lives--;
 					player.projs.get(i).isVisible = false;
-					if (pawian.lives < 0) {
+					if (pawian.lives < 0 && !pawian.isDead) {
 						pawian.isDead = true;
-						n5.play();
+						ramka.przestaw(3);
 					}
 				}
 			}
@@ -471,10 +489,9 @@ public class GameScene extends Scene{
 						if (Math.sqrt(dx*dx + dy*dy) < 50*(1+fem.banany/4f)) {
 							fem.banany++;
 							player.projs.get(i).isVisible = false;
-							f3.play();
 							if (fem.banany > 15) {
 								fem.isDead = true;
-								
+								ramka.przestaw(1);
 							}
 						}
 					}

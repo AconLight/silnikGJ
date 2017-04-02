@@ -42,6 +42,13 @@ public class View {
 		batch.setProjectionMatrix(model.getCam().combined);
 		Gdx.app.log("rendered", "view");
 		batch.end();
+		batch.begin();
+		for(int i = 0; i < model.sceneIds.size(); i++) {
+			model.scenes.get(model.sceneIds.get(i)).render(batch, 3);
+		}
+		batch.setProjectionMatrix(model.getCam().combined);
+		Gdx.app.log("rendered", "view");
+		batch.end();
 		
 		//debugRenderer.render(model.scenes.get(0).getWorld(), model.getCam2().combined);
 

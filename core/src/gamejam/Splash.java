@@ -15,6 +15,7 @@ public class Splash extends Sprajt{
 		.addTexture(Gdx.files.internal("data/madewithjava.png"))
 		.addTexture(Gdx.files.internal("data/prankarnia.png"))
 		.addTexture(Gdx.files.internal("data/gameover.png"))
+		.addTexture(Gdx.files.internal("data/theend.png"))
 		.isVisible = true;
 		start.frameNum = 0;
 	}

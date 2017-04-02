@@ -34,13 +34,13 @@ public class Pawian extends PhysicObject{
 		}
 		hitbox = new PhysicSpriteKulka(world, this, x, y, BodyType.DynamicBody);
 		hitbox.createBall(50, 10, 1, 1);
-		hitbox.scl = 0;
+		hitbox.scl = 1;
 		lewa = new SpriteObject(this, 0, 0);
-		lewa.scl = 0;
+		lewa.scl = 1;
 		prawa = new SpriteObject(this, 0, 0);
-		prawa.scl = 0;
+		prawa.scl = 1;
 		time2 = 0;
-		lives = 1;
+		lives = 15;
 		addSprite(lewa)
 		.addTexture(Gdx.files.internal("data/pawianlewa.png"));
 		
@@ -63,7 +63,10 @@ public class Pawian extends PhysicObject{
 			applyForce((float)(Math.cos(Math.toRadians(alfa))*speed*delta), (float)(Math.sin(Math.toRadians(alfa))*speed*delta));
 		else {
 			applyForce((float)(-Math.cos(Math.toRadians(alfa))*speed*delta), (float)(-Math.sin(Math.toRadians(alfa))*speed*delta));
-		}*/
+		}*/lewa.isVisible = true;
+		prawa.isVisible = true;
+		hitbox.isVisible = true;
+		
 		if (isDead) {
 			lewa.scl -= delta;
 			prawa.scl -= delta;
@@ -75,6 +78,12 @@ public class Pawian extends PhysicObject{
 				hitbox.scl = 0;
 			}
 		}
+		lewa.isVisible = true;
+		prawa.isVisible = true;
+		hitbox.isVisible = true;
+		lewa.scl =1;
+		prawa.scl =1;
+		hitbox.scl =1;
 		if (time2 < 8) {
 			time2 += delta;
 		}
@@ -87,9 +96,14 @@ public class Pawian extends PhysicObject{
 		else {
 			isTriggered = false;
 		}
+		lewa.scl =1;
+		prawa.scl =1;
+		hitbox.scl =1;
+		lewa.isVisible = true;
+		prawa.isVisible = true;
+		hitbox.isVisible = true;
 		
-		
-		if (lewa.scl < 1) {
+		/*if (lewa.scl < 1) {
 			lewa.scl += delta/2;
 			prawa.scl += delta/2;
 			hitbox.scl += delta/2;
@@ -98,7 +112,7 @@ public class Pawian extends PhysicObject{
 			lewa.scl =1;
 			prawa.scl =1;
 			hitbox.scl =1;
-		}
+		}*/
 
 		if((int)((time*tab[0]/20 + tab[1])/tab[2])%2 == 1) isW = true;
 		else isW = false;
@@ -109,6 +123,12 @@ public class Pawian extends PhysicObject{
 		if((int)((time*tab[9]/20 + tab[10])/tab[11])%2 == 1) isD = true;
 		else isD = false;
 		int i = 0;
+		lewa.scl =1;
+		prawa.scl =1;
+		hitbox.scl =1;
+		lewa.isVisible = true;
+		prawa.isVisible = true;
+		hitbox.isVisible = true;
 		if (isW && hitbox.body.getLinearVelocity().y < Stats.maxSpeed/3) {
 			alfa = 90;
 			applyForce((float)(Math.cos(Math.toRadians(alfa))*speed*delta), (float)(Math.sin(Math.toRadians(alfa))*speed*delta));
@@ -126,6 +146,9 @@ public class Pawian extends PhysicObject{
 			applyForce((float)(Math.cos(Math.toRadians(alfa))*speed*delta), (float)(Math.sin(Math.toRadians(alfa))*speed*delta));
 		}
 		
+		lewa.isVisible = true;
+		prawa.isVisible = true;
+		hitbox.isVisible = true;
 			sclVel(0.95f);
 		
 			float v = (float) (GameVars.box2dScale*Math.sqrt(hitbox.body.getLinearVelocity().x*hitbox.body.getLinearVelocity().x + hitbox.body.getLinearVelocity().y*hitbox.body.getLinearVelocity().y));
@@ -143,13 +166,22 @@ public class Pawian extends PhysicObject{
 			prawa.alfa = (float) (hitbox.alfa);
 			lewa.alfa = (float) (hitbox.alfa);
 			//glowa.alfa = (float) (hitbox.alfa);
-			
+			lewa.scl =1;
+			prawa.scl =1;
+			hitbox.scl =1;
 			//if (v > 30) v = 30;
 			time += delta;
 			drenka = (float) (Math.sin(time*5)*v/40);
 			prawa.position.set(hitbox.position.x + drenka * (float)Math.cos((alfa)), hitbox.position.y + drenka * (float)Math.sin((alfa)));
 			lewa.position.set(hitbox.position.x - drenka * (float)Math.cos((alfa)), hitbox.position.y - drenka * (float)Math.sin((alfa)));
 			//glowa.position.set(hitbox.position);
+			lewa.scl =1;
+			prawa.scl =1;
+			hitbox.scl =1;
+			lewa.isVisible = true;
+			prawa.isVisible = true;
+			hitbox.isVisible = true;
+			isVisible = true;
 			}
 	}
 	public void setTarget(Vector2 playerPos) {
