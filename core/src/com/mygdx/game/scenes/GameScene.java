@@ -50,7 +50,7 @@ public class GameScene extends Scene{
 	public Pawian pawian;
 	public Vaper vaper;
 	public Fem fem;
-	public Splash splash;
+	public Splash splash, splash2;
 	public int load;
 	public Music music = Gdx.audio.newMusic(Gdx.files.internal("data/track.mp3"));
 	public Sound s1 = Gdx.audio.newSound(Gdx.files.internal("data/amasz.mp3"));
@@ -95,6 +95,8 @@ public class GameScene extends Scene{
 		splash = new Splash(GameVars.gameWidth/2, GameVars.gameHeight/2);
 		addGameObject(splash);
 		
+		//addGameObject(splash2);
+		
 	}
 	public void load() {
 		score = 0;
@@ -118,6 +120,7 @@ public class GameScene extends Scene{
 		
 		ramka = new Ramka(cam);
 		addGameObject(ramka);
+
 	}
 	
 	public void createWorld() {
@@ -163,8 +166,13 @@ public class GameScene extends Scene{
 		Gdx.app.log("score", "" + score);
 		Gdx.app.log("score3", "" + score3);
 		if (player != null && player.isDead) {
-			splash.start.isVisible = true;
-			splash.start.frameNum = 0;
+			splash2 = new Splash(player.hitbox.position.x, player.hitbox.position.y);
+			splash2.start.objectViewPriority = 2;
+			splash2.start.isVisible = false;
+			splash2.start.frameTime = 99999;
+			splash2.start.isVisible = true;
+			splash2.start.frameNum = 3;
+			addGameObject(splash2);
 		}
 		
 		if (timer >= 0) timer += delta;
