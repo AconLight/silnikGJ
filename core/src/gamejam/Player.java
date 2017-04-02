@@ -105,7 +105,7 @@ public class Player extends PhysicObject{
 			alfa2 /= i;
 		}
 		else {
-			speed = 0;
+			speed = 1;
 			alfa2 = alfa;
 		}
 		if (alfa - alfa2 > 180) {
@@ -117,7 +117,7 @@ public class Player extends PhysicObject{
 			alfa /= 6;
 		}
 		alfa = alfa2;
-		
+		if (alfa == 90) alfa = 90.1f;
 		
 			
 		applyForce((float)(Math.cos(Math.toRadians(alfa))*speed*delta), (float)(Math.sin(Math.toRadians(alfa))*speed*delta));
