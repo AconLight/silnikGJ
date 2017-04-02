@@ -1,8 +1,11 @@
 package com.mygdx.game.scenes;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -32,6 +35,8 @@ import gamejam.Vaper;
 
 public class GameScene extends Scene{
 	float wirX, wirY;
+	float timer;
+	Random g = new Random();
 	public int score1 = 3;
 	public int score2 = 9 + 3;
 	public int score3 = 9 + 3;
@@ -47,7 +52,44 @@ public class GameScene extends Scene{
 	public Fem fem;
 	public Splash splash;
 	public int load;
+	public Music music = Gdx.audio.newMusic(Gdx.files.internal("data/track.mp3"));
+	public Sound s1 = Gdx.audio.newSound(Gdx.files.internal("data/amasz.mp3"));
+	public Sound s2 = Gdx.audio.newSound(Gdx.files.internal("data/bananowycios.mp3"));
+	public Sound s3 = Gdx.audio.newSound(Gdx.files.internal("data/rzutbananem.mp3"));
+	public Sound s4 = Gdx.audio.newSound(Gdx.files.internal("data/gin.mp3"));
+	public Sound s5 = Gdx.audio.newSound(Gdx.files.internal("data/prank.mp3"));
+	public Sound s6 = Gdx.audio.newSound(Gdx.files.internal("data/prank1.mp3"));
+	public Sound s7 = Gdx.audio.newSound(Gdx.files.internal("data/prank3.mp3"));
+	public Sound f1 = Gdx.audio.newSound(Gdx.files.internal("data/traktory.mp3"));
+	public Sound f2 = Gdx.audio.newSound(Gdx.files.internal("data/niesprawiesliwosc.mp3"));
+	public Sound f3 = Gdx.audio.newSound(Gdx.files.internal("data/miam.mp3"));
+	public Sound f4 = Gdx.audio.newSound(Gdx.files.internal("data/dobrybananek.mp3"));
+	public Sound f5 = Gdx.audio.newSound(Gdx.files.internal("data/cielesne.mp3"));
+	public Sound k1 = Gdx.audio.newSound(Gdx.files.internal("data/korwin.mp3"));
+	public Sound v1 = Gdx.audio.newSound(Gdx.files.internal("data/sztach.mp3"));
+	public Sound v2 = Gdx.audio.newSound(Gdx.files.internal("data/paletylko.mp3"));
+	public Sound v3 = Gdx.audio.newSound(Gdx.files.internal("data/kaszel1.mp3"));
+	public Sound v4 = Gdx.audio.newSound(Gdx.files.internal("data/kaszel2.mp3"));
+	public Sound v5 = Gdx.audio.newSound(Gdx.files.internal("data/kaszel3.mp3"));
+	public Sound v6 = Gdx.audio.newSound(Gdx.files.internal("data/grzala.mp3"));
+	public Sound n1 = Gdx.audio.newSound(Gdx.files.internal("data/grzybki.mp3"));
+	public Sound n2 = Gdx.audio.newSound(Gdx.files.internal("data/malpabanany.mp3"));
+	public Sound n3 = Gdx.audio.newSound(Gdx.files.internal("data/niepolskie.mp3"));
+	public Sound n4 = Gdx.audio.newSound(Gdx.files.internal("data/polskiejabuka.mp3"));
+	public Sound n5 = Gdx.audio.newSound(Gdx.files.internal("data/bankioszukaly.mp3"));
+	public Sound g1 = Gdx.audio.newSound(Gdx.files.internal("data/particle.mp3"));
+	public Sound g2 = Gdx.audio.newSound(Gdx.files.internal("data/particle.mp3"));
+	public Sound g3 = Gdx.audio.newSound(Gdx.files.internal("data/unity.mp3"));
+	public Sound g4 = Gdx.audio.newSound(Gdx.files.internal("data/java.mp3"));
+	public Sound g5 = Gdx.audio.newSound(Gdx.files.internal("data/muzyka.mp3"));
+	public Sound t1 = Gdx.audio.newSound(Gdx.files.internal("data/bogactwo.mp3"));
+	public Sound fr1 = Gdx.audio.newSound(Gdx.files.internal("data/gotprank.mp3"));
+	
+	
+	
 	public GameScene(OrthographicCamera cam) {
+		music.play();
+		timer = 0;
 		this.cam = cam;
 		load = 0;
 		splash = new Splash(GameVars.gameWidth/2, GameVars.gameHeight/2);
@@ -81,19 +123,28 @@ public class GameScene extends Scene{
 	}
 	public void spawn1() {
 		hums.add(new Human(world, -700, 700, 500));
+		hums.add(new Human(world, -700, 700, 500));
+		hums.add(new Human(world, -700, 700, 500));
+
+		
 
 		gameObjects.addAll(hums);
 		score1 = hums.size();
 	}
 	public void spawn2() {
 		hums.add(new Human(world, -700, 700, 500));
-
+		hums.add(new Human(world, -700, 700, 500));
+		hums.add(new Human(world, -700, 700, 500));
+		hums.add(new Human(world, -700, 700, 500));
 		gameObjects.addAll(hums);
 		score2 = hums.size()+3;
 	}
 	public void spawn3() {
 		hums.add(new Human(world, -700, 700, 500));
-
+		hums.add(new Human(world, -700, 700, 500));
+		hums.add(new Human(world, -700, 700, 500));
+		hums.add(new Human(world, -700, 700, 500));
+		hums.add(new Human(world, -700, 700, 500));
 		gameObjects.addAll(hums);
 		score3 = hums.size()+6;
 	}
@@ -108,6 +159,10 @@ public class GameScene extends Scene{
 	public void update(float delta) {
 		Gdx.app.log("score", "" + score);
 		Gdx.app.log("score3", "" + score3);
+		if (timer >= 0) timer += delta;
+		if (timer > 8) {
+			timer = -1;
+		}
 		if (load >= 3) {
 		super.update(delta);
 		cam.position.set(player.hitbox.position.x, player.hitbox.position.y, 0);
@@ -128,13 +183,151 @@ public class GameScene extends Scene{
 		if (fem != null && fem.isOver && score == score1) {
 			fem.hitbox.body.setActive(false);
 			score++;
-
+			k1.play();
+			ramka.przestaw(1);
 			pasek.setVap();
 		}
+		if (fem != null && !fem.isDead  && timer  < 0) {
+			timer = 0;
+			switch (g.nextInt(5)) {
+			case 0 : {
+				f1.play();
+				break;
+			}
+			case 1 : {
+				f2.play();
+				break;
+			}
+			case 2 : {
+				f3.play();
+				break;
+			}
+			case 3 : {
+				f4.play();
+				break;
+			}
+			case 4 : {
+				f5.play();
+				break;
+			}
+			}
+		}
+		
+		else if (vaper != null && !vaper.isDead  && timer  < 0) {
+			timer = 0;
+			switch (g.nextInt(5)) {
+			case 0 : {
+				v1.play();
+				break;
+			}
+			case 1 : {
+				v2.play();
+				break;
+			}
+			case 2 : {
+				v3.play();
+				break;
+			}
+			case 3 : {
+				v5.play();
+				break;
+			}
+			case 4 : {
+				v6.play();
+				break;
+			}
+			}
+		}
+		
+		else if (pawian != null && !pawian.isDead  && timer  < 0) {
+			timer = 0;
+			switch (g.nextInt(4)) {
+			case 0 : {
+				n1.play();
+				break;
+			}
+			case 1 : {
+				n2.play();
+				break;
+			}
+			case 2 : {
+				n3.play();
+				break;
+			}
+			case 3 : {
+				n4.play();
+				break;
+			}
+			}
+		}
+		else if (timer  < 0) {
+			timer = 0;
+			switch (g.nextInt(7+5)) {
+			case 0 : {
+				s1.play();
+				break;
+			}
+			case 1 : {
+				s2.play();
+				break;
+			}
+			case 2 : {
+				s3.play();
+				break;
+			}
+			case 3 : {
+				s4.play();
+				break;
+			}
+			case 4 : {
+				s5.play();
+				break;
+			}
+			case 5 : {
+				s6.play();
+				break;
+			}
+			case 6 : {
+				s7.play();
+				break;
+			}
+			case 7 : {
+				g1.play();
+				break;
+			}
+			case 8 : {
+				g2.play();
+				break;
+			}
+			case 9 : {
+				g3.play();
+				break;
+			}
+			case 10 : {
+				g4.play();
+				break;
+			}
+			case 11 : {
+				g5.play();
+				break;
+			}
+			}
+		}
+		
 		
 		if (vaper != null && vaper.isDead && score == score2) {
 			vaper.hitbox.body.setActive(false);
 			score++;
+			fr1.play();
+			ramka.przestaw(2);
+			pasek.setNosacz();
+		}
+		
+		if (pawian != null && pawian.isDead && score != 1000) {
+			pawian.hitbox.body.setActive(false);
+			score = 1000;
+			t1.play();
+			ramka.przestaw(3);
 			pasek.setNosacz();
 		}
 		
@@ -171,7 +364,7 @@ public class GameScene extends Scene{
 					player.projs.get(i).isVisible = false;
 					if (vaper.lives < 0) {
 						vaper.isDead = true;
-						ramka.przestaw(2);
+						v4.play();
 					}
 					}
 					
@@ -185,7 +378,7 @@ public class GameScene extends Scene{
 					player.projs.get(i).isVisible = false;
 					if (pawian.lives < 0) {
 						pawian.isDead = true;
-						ramka.przestaw(3);
+						n5.play();
 					}
 				}
 			}
@@ -262,9 +455,10 @@ public class GameScene extends Scene{
 						if (Math.sqrt(dx*dx + dy*dy) < 50*(1+fem.banany/4f)) {
 							fem.banany++;
 							player.projs.get(i).isVisible = false;
+							f3.play();
 							if (fem.banany > 15) {
 								fem.isDead = true;
-								ramka.przestaw(1);
+								
 							}
 						}
 					}

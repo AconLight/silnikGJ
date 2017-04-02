@@ -40,7 +40,7 @@ public class Pawian extends PhysicObject{
 		prawa = new SpriteObject(this, 0, 0);
 		prawa.scl = 0;
 		time2 = 0;
-		lives = 50;
+		lives = 1;
 		addSprite(lewa)
 		.addTexture(Gdx.files.internal("data/pawianlewa.png"));
 		

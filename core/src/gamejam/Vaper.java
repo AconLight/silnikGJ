@@ -28,7 +28,7 @@ public class Vaper extends PhysicObject{
 	public boolean isTriggered = false;
 	public Vaper(World world, float x, float y, float speed) {
 		super(world, x, y);
-		lives = 25;
+		lives = 1;
 		isVisible = false;
 		time2 = 0;
 		time3 = 0;
