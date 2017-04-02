@@ -24,4 +24,9 @@ public class MebleId {
 	public static final int krzeslo2=19;
 	public static final int scianapoziom=20;
 	public static final int scianapion=21;
+	public static final int fotel2=22;
+	public static final int kaloryferpion=23;
+	public static final int kanapa=24;
+	public static final int fotelkulka=25;
+	public static final int stolpion=26;
 }

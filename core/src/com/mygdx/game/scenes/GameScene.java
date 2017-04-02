@@ -100,11 +100,14 @@ public class GameScene extends Scene{
 		score = 0;
 		hums = new ArrayList<Human>();
 		map = new Map(this);
+
+		pawian = new Pawian(world, 600, 300, 100);
+		addGameObject(pawian);
 		
 		player = new Player(world, 0, 0);
 		
 
-		player = new Player(world, 600, 600);
+		player = new Player(world, 0, 0);
 		pasek = new Pasek();
 
 		player = new Player(world, 0, 0);
