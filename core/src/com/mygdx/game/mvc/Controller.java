@@ -89,6 +89,10 @@ public class Controller implements InputProcessor{
 			model.getScene().ramka.przestaw(2);
 			break;
 		}
+		case Keys.R: {
+			model.getScene().ramka.przestaw(3);
+			break;
+		}
 		}
 		return false;
 	}
