@@ -28,7 +28,7 @@ public class Controller implements InputProcessor{
 
 	@Override
 	public boolean keyDown(int keycode) {
-
+		
 		switch(keycode) {
 		case Keys.W: {
 			model.getScene().player.isW = true;
@@ -65,6 +65,13 @@ public class Controller implements InputProcessor{
 				model.getScene().score++;
 				if (model.getScene().score == model.getScene().score1 + 2) {
 					model.getScene().spawn2();
+				}
+			}
+			else if (model.getScene().score > model.getScene().score2 && model.getScene().score < model.getScene().score2+3) {
+				model.getScene().ramka.przestaw(2);
+				model.getScene().score++;
+				if (model.getScene().score == model.getScene().score2 + 2) {
+					model.getScene().spawn3 ();
 				}
 			}
 			break;

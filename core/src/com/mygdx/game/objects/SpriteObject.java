@@ -18,7 +18,7 @@ public class SpriteObject extends GameObject {
 	public float frameTime;
 	float frameDt;
 	public boolean isPingPong;
-	boolean isLeft;
+	public boolean isLeft;
 	int spriteViewPriority;
 	public boolean isSticked = true;
 	public float alfa;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.JointDef;
@@ -33,6 +34,7 @@ public class GameScene extends Scene{
 	float wirX, wirY;
 	public int score1 = 3;
 	public int score2 = 9 + 3;
+	public int score3 = 9 + 3;
 	float pawianX = -200, pawianY = -200;
 	public int score;
 	public Player player;
@@ -68,6 +70,7 @@ public class GameScene extends Scene{
 		addGameObject(pasek);
 		spawn1();
 		
+		
 		ramka = new Ramka(cam);
 		addGameObject(ramka);
 	}
@@ -90,9 +93,9 @@ public class GameScene extends Scene{
 	}
 	public void spawn3() {
 		hums.add(new Human(world, -700, 700, 500));
-		hums.add(new Human(world, -900, -700, 500));
-		hums.add(new Human(world, -700, 700, 500));
+
 		gameObjects.addAll(hums);
+		score3 = hums.size()+6;
 	}
 	
 	public void setMap() {
@@ -104,19 +107,89 @@ public class GameScene extends Scene{
 	
 	public void update(float delta) {
 		Gdx.app.log("score", "" + score);
+		Gdx.app.log("score3", "" + score3);
 		if (load >= 3) {
 		super.update(delta);
 		cam.position.set(player.hitbox.position.x, player.hitbox.position.y, 0);
 		cam.update();
 		
+		if (pawian != null && pawian.isVisible && pawian.isTriggered) {
+			pawian.setTarget(player.hitbox.position, 0.6f);
+		}
+		if (pawian != null && pawian.isVisible && !pawian.isTriggered) {
+			pawian.setTarget(new Vector2(player.hitbox.position.y, player.hitbox.position.x) , 0.3f);
+		}
+		
+		
+		if (vaper != null && vaper.isVisible) {
+			vaper.setTarget(player.hitbox.position);
+		}
 		
 		if (fem != null && fem.isOver && score == score1) {
 			fem.hitbox.body.setActive(false);
 			score++;
-			ramka.przestaw(1);
+
 			pasek.setVap();
 		}
 		
+		if (vaper != null && vaper.isDead && score == score2) {
+			vaper.hitbox.body.setActive(false);
+			score++;
+			pasek.setNosacz();
+		}
+		
+		float dx2, dy2;
+		if (vaper != null && !vaper.isDead) { // 
+		dx2 = player.hitbox.position.x - vaper.hitbox.position.x;
+		dy2 = player.hitbox.position.y - vaper.hitbox.position.y;
+		
+		if ((Math.sqrt(dx2*dx2 + dy2*dy2) < 100)) {
+			player.isDead = true;
+		}
+		}
+		
+		if (pawian != null && !pawian.isDead) {
+			dx2 = player.hitbox.position.x - pawian.hitbox.position.x;
+			dy2 = player.hitbox.position.y - pawian.hitbox.position.y;
+			
+			if ((Math.sqrt(dx2*dx2 + dy2*dy2) < 100)) {
+				player.isDead = true;
+			}
+			}
+
+		for(int i = 0; i < player.projs.size(); i++) {
+			if (vaper != null && player.projs.get(i).isVisible) { //
+				dx2 = player.projs.get(i).position.x - vaper.hitbox.position.x;
+				dy2 = player.projs.get(i).position.y - vaper.hitbox.position.y;
+				if (Math.sqrt(dx2*dx2 + dy2*dy2) < 50) {
+					if (vaper.hitbox.frameNum != 13) {
+					vaper.hitbox.frameNum++;
+					vaper.lives--;
+					if (vaper.lives < 0) vaper.isDead = true;
+					vaper.setTarget(player.hitbox.position, -1);
+					//wvaper.isVisible = false;
+					player.projs.get(i).isVisible = false;
+					if (vaper.lives < 0) {
+						vaper.isDead = true;
+						ramka.przestaw(2);
+					}
+					}
+					
+				}
+			}
+			if (pawian != null && player.projs.get(i).isVisible) { //
+				dx2 = player.projs.get(i).position.x - pawian.hitbox.position.x;
+				dy2 = player.projs.get(i).position.y - pawian.hitbox.position.y;
+				if (Math.sqrt(dx2*dx2 + dy2*dy2) < 50) {
+					pawian.lives--;
+					player.projs.get(i).isVisible = false;
+					if (pawian.lives < 0) {
+						pawian.isDead = true;
+						ramka.przestaw(3);
+					}
+				}
+			}
+		}
 		
 		
 		for (int x = 0;  x < hums.size(); x++) {
@@ -135,10 +208,19 @@ public class GameScene extends Scene{
 					}
 					if (score == score2) {
 						if(vaper == null) {
-							vaper = new Vaper(world, -500, 0, 300);
+							vaper = new Vaper(world, wirX, wirY, 300);
 						
 						vaper.isVisible = true;
 						addGameObject(vaper);
+						}
+					}
+					
+					if (score == score3) {
+						if(pawian == null) {
+							pawian = new Pawian(world, wirX, wirY,  900);
+						
+						pawian.isVisible = true;
+						addGameObject(pawian);
 						}
 					}
 					
@@ -157,7 +239,7 @@ public class GameScene extends Scene{
 						player.projs.get(i).isVisible = false;
 						hums.get(j).isTriggered = true;
 						score++;
-						if (score == score1 || score == score2) {
+						if (score == score1 || score == score2 || score == score3) {
 							
 							wirX = 0;
 							wirY = 0;
@@ -182,9 +264,11 @@ public class GameScene extends Scene{
 							player.projs.get(i).isVisible = false;
 							if (fem.banany > 15) {
 								fem.isDead = true;
+								ramka.przestaw(1);
 							}
 						}
 					}
+					
 				}
 			}
 			dx = player.hitbox.position.x - hums.get(j).hitbox.position.x;

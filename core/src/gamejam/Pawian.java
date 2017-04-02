@@ -15,14 +15,15 @@ import com.mygdx.game.settings.GameVars;
 public class Pawian extends PhysicObject{
 	Random g;
 	float tab[] = new float[12];
-	float time;
+	float time, time2;
 	float drenka;
 	public PhysicSpriteKulka hitbox;
 	SpriteObject lewa, prawa, glowa;
 	public boolean isW, isS, isD, isA;
 	float alfa;
 	float speed;
-	public boolean isVisible;
+	public int lives;
+	public boolean isVisible, isDead;
 	public boolean isTriggered = false;
 	public Pawian(World world, float x, float y, float speed) {
 		super(world, x, y);
@@ -38,7 +39,8 @@ public class Pawian extends PhysicObject{
 		lewa.scl = 0;
 		prawa = new SpriteObject(this, 0, 0);
 		prawa.scl = 0;
-		
+		time2 = 0;
+		lives = 50;
 		addSprite(lewa)
 		.addTexture(Gdx.files.internal("data/pawianlewa.png"));
 		
@@ -62,6 +64,31 @@ public class Pawian extends PhysicObject{
 		else {
 			applyForce((float)(-Math.cos(Math.toRadians(alfa))*speed*delta), (float)(-Math.sin(Math.toRadians(alfa))*speed*delta));
 		}*/
+		if (isDead) {
+			lewa.scl -= delta;
+			prawa.scl -= delta;
+			hitbox.scl -= delta;
+			if (lewa.scl < 0) {
+				isVisible = false;
+				lewa.scl = 0;
+				prawa.scl = 0;
+				hitbox.scl = 0;
+			}
+		}
+		if (time2 < 8) {
+			time2 += delta;
+		}
+		if (time2 > 8) {
+			time2 = -3;
+		}
+		if (time2 < 0) {
+			isTriggered = true;
+		}
+		else {
+			isTriggered = false;
+		}
+		
+		
 		if (lewa.scl < 1) {
 			lewa.scl += delta/2;
 			prawa.scl += delta/2;
@@ -132,6 +159,12 @@ public class Pawian extends PhysicObject{
 		float dr = (float) Math.sqrt(dx*dx + dy*dy);
 		applyForce(GameVars.box2dScale*Stats.maxSpeed/10*dx/dr, GameVars.box2dScale*Stats.maxSpeed/10*dy/dr);
 		}
+	}
+	public void setTarget(Vector2 playerPos, float scl) {
+		float dx = playerPos.x - hitbox.position.x;
+		float dy = playerPos.y - hitbox.position.y;
+		float dr = (float) Math.sqrt(dx*dx + dy*dy);
+		applyForce(GameVars.box2dScale*Stats.maxSpeed/2*scl*dx/dr, GameVars.box2dScale*Stats.maxSpeed/2*scl*dy/dr);
 	}
 	public void render(SpriteBatch batch) {
 		if(isVisible) super.render(batch);
