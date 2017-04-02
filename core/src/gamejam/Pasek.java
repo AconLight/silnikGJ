@@ -23,15 +23,15 @@ public class Pasek extends Sprajt{
 	}	
 		
 	
-	void setTesto(){
+	public void setVap(){
 		pasek.frameNum = 1;
 	}
 	
-	void setNosacz(){
+	public void setNosacz(){
 		pasek.frameNum = 2;
 	}
 	
-	void setPoNosaczu(){
+	public void setPoNosaczu(){
 		pasek.frameNum = 3;
 	}
 }

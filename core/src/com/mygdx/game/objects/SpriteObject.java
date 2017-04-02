@@ -18,7 +18,7 @@ public class SpriteObject extends GameObject {
 	public float frameTime;
 	float frameDt;
 	public boolean isPingPong;
-	boolean isLeft;
+	public boolean isLeft;
 	int spriteViewPriority;
 	public boolean isSticked = true;
 	public float alfa;
@@ -26,7 +26,9 @@ public class SpriteObject extends GameObject {
 	public float scl;
 	
 	public GameObject parent;
-	
+	public void addToAlfa(float a) {
+		alfa += a;
+	}
 	public SpriteObject(GameObject parent, float x, float y){
 		super(parent.position.x + x, parent.position.y + y);
 		isVisible = true;

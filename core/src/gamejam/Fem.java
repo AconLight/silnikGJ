@@ -15,7 +15,7 @@ import com.mygdx.game.settings.GameVars;
 public class Fem extends PhysicObject{
 	public int banany;
 	float time2;
-	public boolean isDead;
+	public boolean isDead, isOver;
 	Random g;
 	float tab[] = new float[12];
 	float time;
@@ -41,10 +41,12 @@ public class Fem extends PhysicObject{
 		hitbox.createBall(50, 10, 1, 1);
 		hitbox.scl = 0;
 		lewa = new SpriteObject(this, 0, 0);
+		
 		lewa.scl = 0;
 		prawa = new SpriteObject(this, 0, 0);
 		prawa.scl = 0;
-		
+		czarna = new SpriteObject(this, 0, 0);
+		czarna.scl = 0;
 		addSprite(lewa)
 		.addTexture(Gdx.files.internal("data/feml.png"));
 		
@@ -53,6 +55,9 @@ public class Fem extends PhysicObject{
 		
 		addSprite(hitbox)
 		.addTexture(Gdx.files.internal("data/fem.png"));
+		
+		addSprite(czarna)
+		.addTexture(Gdx.files.internal("data/czarnadziura.png"));
 		
 		
 		this.speed = speed;
@@ -68,18 +73,38 @@ public class Fem extends PhysicObject{
 		else {
 			applyForce((float)(-Math.cos(Math.toRadians(alfa))*speed*delta), (float)(-Math.sin(Math.toRadians(alfa))*speed*delta));
 		}*/
+		float v = (float) (GameVars.box2dScale*Math.sqrt(hitbox.body.getLinearVelocity().x*hitbox.body.getLinearVelocity().x + hitbox.body.getLinearVelocity().y*hitbox.body.getLinearVelocity().y));
 		if (isDead) {
+			lewa.isVisible = false;
+			prawa.isVisible = false;
 			if (lewa.scl >= 0) {
 				time2 += delta;
 				lewa.scl -= delta*time2/10;
 				prawa.scl -= delta*time2/10;
 				hitbox.scl -= delta*time2/10;
+				czarna.scl -= delta*(time2-5)/10;
+				czarna.alfa +=(delta*(time2)*100);
+				lewa.alfa +=(delta*time2*100);
+				prawa.alfa +=(delta*time2*100);
+				hitbox.alfa +=(delta*time2*100);
 			}
 			else {
 				lewa.scl = 0;
 				prawa.scl = 0;
 				hitbox.scl = 0;
+				czarna.scl -= delta*(5-time2)/10;
+				if (czarna.scl < 0 && hitbox.scl <= 0) {
+					isOver = true;
+					czarna.isVisible = false;
+					lewa.isVisible = false;
+					prawa.isVisible = false;
+					hitbox.isVisible = false;
+				}
+				else {
+					czarna.scl -= delta*(time2-5)/10;
+				}
 			}
+			
 			
 		}
 		else {
@@ -89,11 +114,11 @@ public class Fem extends PhysicObject{
 			hitbox.scl += delta/2;
 		}
 		else {
-			lewa.scl =1 + banany/4f;
-			prawa.scl =1+ banany/4f;
-			hitbox.scl =1+ banany/4f;
+			lewa.scl =1 + banany/8f;
+			prawa.scl =1+ banany/8f;
+			hitbox.scl =1+ banany/8f;
 		}
-		}
+		
 
 		if((int)((time*tab[0]/20 + tab[1])/tab[2])%2 == 1) isW = true;
 		else isW = false;
@@ -123,7 +148,7 @@ public class Fem extends PhysicObject{
 		
 			sclVel(0.95f);
 		
-			float v = (float) (GameVars.box2dScale*Math.sqrt(hitbox.body.getLinearVelocity().x*hitbox.body.getLinearVelocity().x + hitbox.body.getLinearVelocity().y*hitbox.body.getLinearVelocity().y));
+			
 			if (v != 0) {
 				if (hitbox.body.getLinearVelocity().x >= 0)
 					hitbox.alfa = (float) Math.asin(hitbox.body.getLinearVelocity().y*GameVars.box2dScale/v);
@@ -133,19 +158,21 @@ public class Fem extends PhysicObject{
 			else {
 				hitbox.alfa = 0;			
 			}
+			if (banany < 15) {
 			alfa = hitbox.alfa;
 			hitbox.alfa = (float) Math.toDegrees(hitbox.alfa);
 			prawa.alfa = (float) (hitbox.alfa);
 			lewa.alfa = (float) (hitbox.alfa);
 			//glowa.alfa = (float) (hitbox.alfa);
-			
-			//if (v > 30) v = 30;
+			}
+			}//if (v > 30) v = 30;
 			time += delta;
 			drenka = (float) (Math.sin(time*5)*v/40);
 			prawa.position.set(hitbox.position.x + drenka * (float)Math.cos((alfa)), hitbox.position.y + drenka * (float)Math.sin((alfa)));
 			lewa.position.set(hitbox.position.x - drenka * (float)Math.cos((alfa)), hitbox.position.y - drenka * (float)Math.sin((alfa)));
-			//glowa.position.set(hitbox.position);
-			}
+			czarna.position.set(hitbox.position);
+			
+		}
 	}
 	public void setTarget(Vector2 playerPos) {
 		if (isTriggered) {
