@@ -76,7 +76,7 @@ public class Controller implements InputProcessor{
 			}
 			else if (model.getScene().score ==1000) {
 				model.getScene().ramka.przestaw(3);
-				if (model.getScene().score == model.getScene().score2 + 2) {
+				if (model.getScene().score == model.getScene().score3 + 2) {
 					model.getScene().pasek.setPoNosaczu();
 				}
 			}

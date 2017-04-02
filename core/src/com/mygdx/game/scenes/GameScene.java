@@ -126,8 +126,8 @@ public class GameScene extends Scene{
 	}
 	public void spawn1() {
 		hums.add(new Human(world, -700, 700, 500));
-		hums.add(new Human(world, -700, 700, 500));
-		hums.add(new Human(world, -700, 700, 500));
+		hums.add(new Human(world, 700, 700, 500));
+		hums.add(new Human(world, -700, 600, 500));
 
 		
 
@@ -136,17 +136,17 @@ public class GameScene extends Scene{
 	}
 	public void spawn2() {
 		hums.add(new Human(world, -700, 700, 500));
-		hums.add(new Human(world, -700, 700, 500));
-		hums.add(new Human(world, -700, 700, 500));
+		hums.add(new Human(world, 700, 700, 500));
+		hums.add(new Human(world, -700, -700, 500));
 		hums.add(new Human(world, -700, 700, 500));
 		gameObjects.addAll(hums);
 		score2 = hums.size()+3;
 	}
 	public void spawn3() {
 		hums.add(new Human(world, -700, 700, 500));
-		hums.add(new Human(world, -700, 700, 500));
-		hums.add(new Human(world, -700, 700, 500));
-		hums.add(new Human(world, -700, 700, 500));
+		hums.add(new Human(world, 700, 700, 500));
+		hums.add(new Human(world, -700, -700, 500));
+		hums.add(new Human(world, 700, 700, 500));
 		hums.add(new Human(world, -700, 700, 500));
 		gameObjects.addAll(hums);
 		score3 = hums.size()+6;
@@ -162,6 +162,11 @@ public class GameScene extends Scene{
 	public void update(float delta) {
 		Gdx.app.log("score", "" + score);
 		Gdx.app.log("score3", "" + score3);
+		if (player != null && player.isDead) {
+			splash.start.isVisible = true;
+			splash.start.frameNum = 0;
+		}
+		
 		if (timer >= 0) timer += delta;
 		if (timer > 8) {
 			timer = -1;
@@ -242,7 +247,7 @@ public class GameScene extends Scene{
 			}
 		}
 		
-		else if (pawian != null && !pawian.isDead  && timer  < 0) {
+		else if (pawian != null && pawian.isVisible  && timer  < 0) {
 			timer = 0;
 			switch (g.nextInt(4)) {
 			case 0 : {
@@ -326,7 +331,7 @@ public class GameScene extends Scene{
 			pasek.setNosacz();
 		}
 		
-		if (pawian != null && pawian.isDead && score != 1000) {
+		if (pawian != null && pawian.isDead && !pawian.isVisible && score != 1000) {
 			pawian.hitbox.body.setActive(false);
 			score = 1000;
 			t1.play();
