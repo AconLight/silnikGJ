@@ -45,10 +45,10 @@ public class GameScene extends Scene{
 		hums = new ArrayList<Human>();
 		map = new Map(this);
 
-		player = new Player(world, 0, 0);
-		
+		pawian = new Pawian(world, 600, 300, 100);
+		addGameObject(pawian);
 
-		player = new Player(world, 600, 600);
+		player = new Player(world, 0, 0);
 		pasek = new Pasek();
 
 		player = new Player(world, 0, 0);

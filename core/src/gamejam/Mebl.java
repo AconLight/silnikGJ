@@ -71,9 +71,9 @@ public class Mebl extends PhysicObject{
 		}
 		case MebleId.pufa: {
 			hitbox = new PhysicSpriteKulka(world, this, x-20, y+15,BodyType.DynamicBody);
-			((PhysicSpriteKulka) hitbox).createBall(30, 100, 1, 1);
+			((PhysicSpriteKulka) hitbox).createBall(30, 50, 1, 1);
 			hitbox2 = new PhysicSpriteKulka(world, this, x+25, y-18,BodyType.DynamicBody);
-			((PhysicSpriteKulka) hitbox2).createBall(25, 100, 1, 1);
+			((PhysicSpriteKulka) hitbox2).createBall(25, 50, 1, 1);
 			addDistanceJoint(hitbox.body, hitbox2.body);
 			addSprite(hitbox);
 			addSprite(hitbox2);
@@ -111,7 +111,7 @@ public class Mebl extends PhysicObject{
 		}
 		case MebleId.krzeslo: {
 			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.DynamicBody);
-			((PhysicSpriteRect) hitbox).createRect(45, 50, 350, 1, 1);
+			((PhysicSpriteRect) hitbox).createRect(45, 50, 80, 1, 1);
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
@@ -119,9 +119,18 @@ public class Mebl extends PhysicObject{
 			sp.alfa=180;
 			break;
 		}
+		case MebleId.fotelkulka: {
+			hitbox = new PhysicSpriteKulka(world, this, x, y,BodyType.DynamicBody);
+			((PhysicSpriteKulka) hitbox).createBall(60, 10, 1, 1);
+			addSprite(hitbox);
+			sp = new SpriteObject(this, 0, 0);
+			addSprite(sp)
+			.addTexture(Gdx.files.internal("data/testy/fotelkulka.png"));
+			break;
+		}
 		case MebleId.krzeslo2: {
 			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.DynamicBody);
-			((PhysicSpriteRect) hitbox).createRect(45, 50, 500, 1, 1);
+			((PhysicSpriteRect) hitbox).createRect(45, 50, 80, 1, 1);
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
@@ -129,9 +138,18 @@ public class Mebl extends PhysicObject{
 	
 			break;
 		}
+		case MebleId.kanapa: {
+			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.StaticBody);
+			((PhysicSpriteRect) hitbox).createRect(180, 86, 350, 1, 1);
+			addSprite(hitbox);
+			sp = new SpriteObject(this, 0, 0);
+			addSprite(sp)
+			.addTexture(Gdx.files.internal("data/testy/kanapa.png"));
+			break;
+			}
 		case MebleId.pufajedzenie: {
 			hitbox = new PhysicSpriteKulka(world, this, x, y,BodyType.DynamicBody);
-			((PhysicSpriteKulka) hitbox).createBall(75, 100, 1, 1);
+			((PhysicSpriteKulka) hitbox).createBall(75, 80, 1, 1);
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
@@ -140,7 +158,7 @@ public class Mebl extends PhysicObject{
 		}
 		case MebleId.stolek: {
 			hitbox = new PhysicSpriteKulka(world, this, x, y,BodyType.DynamicBody);
-			((PhysicSpriteKulka) hitbox).createBall(40, 500, 1, 1);
+			((PhysicSpriteKulka) hitbox).createBall(40, 60, 1, 1);
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
@@ -158,7 +176,7 @@ public class Mebl extends PhysicObject{
 		}
 		case MebleId.pufa_mala: {
 			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.DynamicBody);
-			((PhysicSpriteRect) hitbox).createRect(30, 30, 100, 1, 1);
+			((PhysicSpriteRect) hitbox).createRect(30, 30, 50, 1, 1);
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
@@ -174,6 +192,17 @@ public class Mebl extends PhysicObject{
 			.addTexture(Gdx.files.internal("data/testy/kaloryfer.png"));
 			break;
 		}
+		case MebleId.kaloryferpion: {
+			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.StaticBody);
+			((PhysicSpriteRect) hitbox).createRect(30, 200, 1, 1, 1);
+			addSprite(hitbox);
+			sp = new SpriteObject(this, 0, 0);
+			addSprite(sp)
+			.addTexture(Gdx.files.internal("data/testy/kaloryfer.png"));
+			sp.alfa=90;
+			break;
+		}
+
 		case MebleId.tron: {
 			hitbox = new PhysicSpriteRect(world, this, x-35, y,BodyType.StaticBody);
 			((PhysicSpriteRect) hitbox).createRect(45, 80, 1, 1, 1);
@@ -193,6 +222,16 @@ public class Mebl extends PhysicObject{
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
 			.addTexture(Gdx.files.internal("data/testy/fotel.png"));
+			break;
+		}
+		case MebleId.fotel2: {
+			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.StaticBody);
+			((PhysicSpriteRect) hitbox).createRect(60, 54, 1, 1, 1);
+			addSprite(hitbox);
+			sp = new SpriteObject(this, 0, 0);
+			addSprite(sp)
+			.addTexture(Gdx.files.internal("data/testy/fotel.png"));
+			sp.alfa=90;
 			break;
 		}
 		case MebleId.filar: {
@@ -235,6 +274,15 @@ public class Mebl extends PhysicObject{
 			sp.alfa=90;
 			break;
 		}
+		case MebleId.stolpion: {
+			hitbox = new PhysicSpriteRect(world, this, x, y,BodyType.StaticBody);
+			((PhysicSpriteRect) hitbox).createRect(100, 206, 1, 1, 1);
+			addSprite(hitbox);
+			sp = new SpriteObject(this, 0, 0);
+			addSprite(sp)
+			.addTexture(Gdx.files.internal("data/testy/czarnystol2.png"));
+			break;
+		}
 		}
 	}
 	
@@ -266,6 +314,13 @@ public class Mebl extends PhysicObject{
 			break;
 		}
 		case MebleId.pufajedzenie: {
+			sp.position.set(hitbox.position);
+			sp.alfa=(float) (hitbox.body.getAngle()*180/Math.PI);
+			sclVel(0.95f);
+			hitbox.body.setAngularVelocity(hitbox.body.getAngularVelocity()*0.95f);
+			break;
+		}
+		case MebleId.fotelkulka: {
 			sp.position.set(hitbox.position);
 			sp.alfa=(float) (hitbox.body.getAngle()*180/Math.PI);
 			sclVel(0.95f);
