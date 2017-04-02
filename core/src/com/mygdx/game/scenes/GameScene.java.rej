@@ -1,0 +1,11 @@
+diff a/core/src/com/mygdx/game/scenes/GameScene.java b/core/src/com/mygdx/game/scenes/GameScene.java	(rejected hunks)
+@@ -40,6 +40,9 @@
+ 		addGameObject(pawian);
+ 		addGameObject(player);
+ 		hums.add(new Human(world, 700, 700, 500));
++		hums.add(new Human(world, 700, 700, 500));
++		hums.add(new Human(world, 700, 700, 500));
++		hums.add(new Human(world, 700, 700, 500));
+ 
+ 
+ 		gameObjects.addAll(hums);

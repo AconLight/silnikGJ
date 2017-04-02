@@ -38,7 +38,7 @@ public class Mebl extends PhysicObject{
 			((PhysicSpriteRect) hitbox).createRect(200, 50, 1, 1, 1);
 			addSprite(hitbox);
 			addSprite(new SpriteObject(this, 0, 0))
-			.addTexture(Gdx.files.internal("data/testy/sciana400x100.png"));
+			.addTexture(Gdx.files.internal("data/sciana400x100.png"));
 			break;
 		}
 		case MebleId.scianapion: {
@@ -47,7 +47,7 @@ public class Mebl extends PhysicObject{
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
-			.addTexture(Gdx.files.internal("data/testy/sciana400x100.png"));
+			.addTexture(Gdx.files.internal("data/sciana400x100.png"));
 			sp.alfa=90;
 			break;
 		}
@@ -58,7 +58,7 @@ public class Mebl extends PhysicObject{
 			//.addTexture(Gdx.files.internal("data/Wiktor1.1.png"));
 			
 			addSprite(new SpriteObject(this, 0, 20))
-			.addTexture(Gdx.files.internal("data/testy/wiktor1.1.png"));
+			.addTexture(Gdx.files.internal("data/wiktor11.png"));
 			break;
 		}
 		case MebleId.stefan: {
@@ -66,7 +66,7 @@ public class Mebl extends PhysicObject{
 			((PhysicSpriteRect) hitbox).createRect(155, 77, 1, 1, 1);
 			addSprite(hitbox);
 			addSprite(new SpriteObject(this, 0, -5))
-			.addTexture(Gdx.files.internal("data/testy/stefan1.0.png"));
+			.addTexture(Gdx.files.internal("data/stefan10.png"));
 			break;
 		}
 		case MebleId.pufa: {
@@ -79,10 +79,10 @@ public class Mebl extends PhysicObject{
 			addSprite(hitbox2);
 			sp = new SpriteObject(this, -20, 15);
 			addSprite(sp)
-			.addTexture(Gdx.files.internal("data/testy/pufa_pol1.png"));
+			.addTexture(Gdx.files.internal("data/pufa_pol1.png"));
 			sp2 = new SpriteObject(this, 25, -18);
 			addSprite(sp2)
-			.addTexture(Gdx.files.internal("data/testy/pufa_pol2.png"));
+			.addTexture(Gdx.files.internal("data/pufa_pol2.png"));
 			break;
 		}
 		case MebleId.wojtas: {
@@ -90,7 +90,7 @@ public class Mebl extends PhysicObject{
 			((PhysicSpriteRect) hitbox).createRect(75, 155, 1, 1, 1);
 			addSprite(hitbox);
 			addSprite(new SpriteObject(this, 0, 20))
-			.addTexture(Gdx.files.internal("data/testy/wojtas1.png"));
+			.addTexture(Gdx.files.internal("data/wojtas1.png"));
 			break;	
 		}
 		case MebleId.banany: {
@@ -98,7 +98,7 @@ public class Mebl extends PhysicObject{
 			((PhysicSpriteRect) hitbox).createRect(50, 60, 1, 1, 1);
 			addSprite(hitbox);
 			addSprite(new SpriteObject(this, 0, 0))
-			.addTexture(Gdx.files.internal("data/testy/banany.png"));
+			.addTexture(Gdx.files.internal("data/banany.png"));
 			break;	
 		}
 		case MebleId.pizza: {
@@ -106,7 +106,7 @@ public class Mebl extends PhysicObject{
 			((PhysicSpriteKulka) hitbox).createBall(100, 1, 1, 1);
 			addSprite(hitbox);
 			addSprite(new SpriteObject(this, 0, 0))
-			.addTexture(Gdx.files.internal("data/testy/pizza.png"));
+			.addTexture(Gdx.files.internal("data/pizza.png"));
 			break;	
 		}
 		case MebleId.krzeslo: {
@@ -115,7 +115,7 @@ public class Mebl extends PhysicObject{
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
-			.addTexture(Gdx.files.internal("data/testy/krzeslo.png"));
+			.addTexture(Gdx.files.internal("data/krzeslo.png"));
 			sp.alfa=180;
 			break;
 		}
@@ -125,7 +125,7 @@ public class Mebl extends PhysicObject{
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
-			.addTexture(Gdx.files.internal("data/testy/fotelkulka.png"));
+			.addTexture(Gdx.files.internal("data/fotelkulka.png"));
 			break;
 		}
 		case MebleId.krzeslo2: {
@@ -134,7 +134,7 @@ public class Mebl extends PhysicObject{
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
-			.addTexture(Gdx.files.internal("data/testy/krzeslo2.png"));
+			.addTexture(Gdx.files.internal("data/krzeslo2.png"));
 	
 			break;
 		}
@@ -144,7 +144,7 @@ public class Mebl extends PhysicObject{
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
-			.addTexture(Gdx.files.internal("data/testy/kanapa.png"));
+			.addTexture(Gdx.files.internal("data/kanapa.png"));
 			break;
 			}
 		case MebleId.pufajedzenie: {
@@ -153,7 +153,7 @@ public class Mebl extends PhysicObject{
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
-			.addTexture(Gdx.files.internal("data/testy/pufajedzenie.png"));
+			.addTexture(Gdx.files.internal("data/pufajedzenie.png"));
 			break;
 		}
 		case MebleId.stolek: {
@@ -162,7 +162,7 @@ public class Mebl extends PhysicObject{
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
-			.addTexture(Gdx.files.internal("data/testy/stolek.png"));
+			.addTexture(Gdx.files.internal("data/stolek.png"));
 			break;
 		}
 		case MebleId.szafka: {
@@ -171,7 +171,7 @@ public class Mebl extends PhysicObject{
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
-			.addTexture(Gdx.files.internal("data/testy/szafka.png"));
+			.addTexture(Gdx.files.internal("data/szafka.png"));
 			break;
 		}
 		case MebleId.pufa_mala: {
@@ -180,7 +180,7 @@ public class Mebl extends PhysicObject{
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
-			.addTexture(Gdx.files.internal("data/testy/pufa_mala.png"));
+			.addTexture(Gdx.files.internal("data/pufa_mala.png"));
 			break;
 		}
 		case MebleId.kaloryfer: {
@@ -189,7 +189,7 @@ public class Mebl extends PhysicObject{
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
-			.addTexture(Gdx.files.internal("data/testy/kaloryfer.png"));
+			.addTexture(Gdx.files.internal("data/kaloryfer.png"));
 			break;
 		}
 		case MebleId.kaloryferpion: {
@@ -198,7 +198,7 @@ public class Mebl extends PhysicObject{
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
-			.addTexture(Gdx.files.internal("data/testy/kaloryfer.png"));
+			.addTexture(Gdx.files.internal("data/kaloryfer.png"));
 			sp.alfa=90;
 			break;
 		}
@@ -212,7 +212,7 @@ public class Mebl extends PhysicObject{
 			addSprite(hitbox2);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
-			.addTexture(Gdx.files.internal("data/testy/tron.png"));
+			.addTexture(Gdx.files.internal("data/tron.png"));
 			break;
 		}
 		case MebleId.fotel: {
@@ -221,7 +221,7 @@ public class Mebl extends PhysicObject{
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
-			.addTexture(Gdx.files.internal("data/testy/fotel.png"));
+			.addTexture(Gdx.files.internal("data/fotel.png"));
 			break;
 		}
 		case MebleId.fotel2: {
@@ -230,7 +230,7 @@ public class Mebl extends PhysicObject{
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
-			.addTexture(Gdx.files.internal("data/testy/fotel.png"));
+			.addTexture(Gdx.files.internal("data/fotel.png"));
 			sp.alfa=90;
 			break;
 		}
@@ -240,7 +240,7 @@ public class Mebl extends PhysicObject{
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
-			.addTexture(Gdx.files.internal("data/testy/filar.png"));
+			.addTexture(Gdx.files.internal("data/filar.png"));
 			break;
 		}
 		case MebleId.subway: {
@@ -249,7 +249,7 @@ public class Mebl extends PhysicObject{
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
-			.addTexture(Gdx.files.internal("data/testy/subway.png"));
+			.addTexture(Gdx.files.internal("data/subway.png"));
 			
 			
 			break;
@@ -260,7 +260,7 @@ public class Mebl extends PhysicObject{
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
-			.addTexture(Gdx.files.internal("data/testy/czarnystol.png"));
+			.addTexture(Gdx.files.internal("data/czarnystol.png"));
 			sp.alfa=90;
 			break;
 		}
@@ -270,7 +270,7 @@ public class Mebl extends PhysicObject{
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
-			.addTexture(Gdx.files.internal("data/testy/czarnystol2.png"));
+			.addTexture(Gdx.files.internal("data/czarnystol2.png"));
 			sp.alfa=90;
 			break;
 		}
@@ -280,7 +280,7 @@ public class Mebl extends PhysicObject{
 			addSprite(hitbox);
 			sp = new SpriteObject(this, 0, 0);
 			addSprite(sp)
-			.addTexture(Gdx.files.internal("data/testy/czarnystol2.png"));
+			.addTexture(Gdx.files.internal("data/czarnystol2.png"));
 			break;
 		}
 		}
