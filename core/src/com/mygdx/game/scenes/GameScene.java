@@ -166,13 +166,13 @@ public class GameScene extends Scene{
 		Gdx.app.log("score", "" + score);
 		Gdx.app.log("score3", "" + score3);
 		if (player != null && player.isDead) {
-			splash2 = new Splash(player.hitbox.position.x, player.hitbox.position.y);
-			splash2.start.objectViewPriority = 2;
-			splash2.start.isVisible = false;
-			splash2.start.frameTime = 99999;
-			splash2.start.isVisible = true;
-			splash2.start.frameNum = 3;
-			addGameObject(splash2);
+			//splash2 = new Splash(player.hitb, 0);
+			//splash2.start.objectViewPriority = 2;
+			//splash2.start.isVisible = false;
+			//splash2.start.frameTime = 99999;
+			//splash2.start.isVisible = true;
+			//splash2.start.frameNum = 3;
+			//addGameObject(splash2);
 		}
 		
 		if (timer >= 0) timer += delta;
