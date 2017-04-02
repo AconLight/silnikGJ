@@ -20,7 +20,11 @@ public class Ramka extends Sprajt{
 	SpriteObject nosal;
 	SpriteObject nosacz;
 	SpriteObject testo;
+	SpriteObject testoMorda;
+	SpriteObject testoMorda2;
 	SpriteObject frank;
+	SpriteObject frankMorda2;
+	SpriteObject frankMorda;
 	SpriteObject vaper;
 	SpriteObject fuck;
 	
@@ -109,6 +113,16 @@ public class Ramka extends Sprajt{
 		.addTexture(Gdx.files.internal("data/testo.png"))
 		.isVisible = false;
 		
+		testoMorda = new SpriteObject(this, -GameVars.gameWidth/2 + 200, 0);
+		addSprite(testoMorda)
+		.addTexture(Gdx.files.internal("data/testomorda.png"))
+		.isVisible = false;
+		
+		testoMorda2 = new SpriteObject(this, -GameVars.gameWidth/2 + 200, 0);
+		addSprite(testoMorda2)
+		.addTexture(Gdx.files.internal("data/testomorda2.png"))
+		.isVisible = false;
+		
 		nosal = new SpriteObject(this, GameVars.gameWidth/2 + 200, 0);
 		addSprite(nosal)
 		.addTexture(Gdx.files.internal("data/nosacz.png"))
@@ -149,6 +163,16 @@ public void ramkaVaper(){
 		addSprite(frank)
 		.addTexture(Gdx.files.internal("data/frank.png"))
 		.isVisible = true;
+		
+		frankMorda = new SpriteObject(this, -GameVars.gameWidth/2 + 200, 0);
+		addSprite(frankMorda)
+		.addTexture(Gdx.files.internal("data/frankmorda.png"))
+		.isVisible = false;
+		
+		frankMorda2 = new SpriteObject(this, -GameVars.gameWidth/2 + 200, 0);
+		addSprite(frankMorda2)
+		.addTexture(Gdx.files.internal("data/frankmorda2.png"))
+		.isVisible = false;
 		
 		vaper = new SpriteObject(this, GameVars.gameWidth/2 + 200, 0);
 		addSprite(vaper)
@@ -195,7 +219,7 @@ public void ramkaVaper(){
 		return up;
 	}
 	
-	void move(Boolean up, float delta){
+	void moveKorwin(Boolean up, float delta){
 		if(up){
 			korwin2.position.y += delta*0.2*speed;	
 			korwin2.position.x += delta*0.05*speed;
@@ -203,6 +227,43 @@ public void ramkaVaper(){
 		else{
 			korwin2.position.y -= delta*0.2*speed;
 			korwin2.position.x -= delta*0.05*speed;
+		}
+	}
+	
+	Boolean testoMorda(){
+		
+		if(testoMorda2.position.y >= (position.y )) up = false;
+		else if( testoMorda2.position.y < position.y - 11) up = true;
+		return up;
+	}
+	
+	void moveTesto(Boolean up, float delta){
+		if(up){
+			testoMorda2.position.y += delta*0.2*speed;	
+			testoMorda2.position.x += delta*0.05*speed;
+		}
+		else{
+			testoMorda2.position.y -= delta*0.2*speed;
+			testoMorda2.position.x -= delta*0.05*speed;
+		}
+	}
+	
+	
+	Boolean frankMorda(){
+		
+		if(frankMorda2.position.y >= (position.y )) up = false;
+		else if( frankMorda2.position.y < position.y - 11) up = true;
+		return up;
+	}
+	
+	void moveFrank(Boolean up, float delta){
+		if(up){
+			frankMorda2.position.y += delta*0.2*speed;	
+			frankMorda2.position.x += delta*0.05*speed;
+		}
+		else{
+			frankMorda2.position.y -= delta*0.2*speed;
+			frankMorda2.position.x -= delta*0.05*speed;
 		}
 	}
 	
@@ -220,7 +281,7 @@ public void ramkaVaper(){
 					korwin2.isVisible = true;
 					
 					//korwinMorda(delta);
-					move(korwinMorda(),delta);
+					moveKorwin(korwinMorda(),delta);
 				}
 				
 				if(femi.position.x > (GameVars.gameWidth/2 + position.x - 200)) femi.position.x -= delta*speed;
@@ -279,6 +340,13 @@ public void ramkaVaper(){
 				ramka.isVisible = true; 
 				text2.isVisible = true;
 				if(testo.position.x < (-GameVars.gameWidth/2 + position.x + 198)) testo.position.x += delta*speed;
+				else {
+					testoMorda.isVisible = true;
+					testoMorda2.isVisible = true;
+					
+					//korwinMorda(delta);
+					moveTesto(testoMorda(),delta);
+				}
 
 				
 				if(nosal.position.x > (GameVars.gameWidth/2 + position.x - 200)) nosal.position.x -= delta*speed;
@@ -309,6 +377,8 @@ public void ramkaVaper(){
 			}
 			
 			else if(ktoraRamka == 4){
+				testoMorda.isVisible = false;
+				testoMorda2.isVisible = false;
 				if(testo.position.x >= (-GameVars.gameWidth/2 + position.x - 250)) testo.position.x -= delta*(1.5*speed);
 
 				if(nosal.position.x <= (GameVars.gameWidth/2 + position.x + 250)) nosal.position.x += delta*(1.5*speed);
@@ -318,6 +388,7 @@ public void ramkaVaper(){
 					text2.isVisible = false;     
 					nosal.isVisible = false;
 					testo.isVisible = false;
+					
 					nosal.frameTime = 999999; 
 					ktoraRamka = 0;
 				}
@@ -332,7 +403,13 @@ public void ramkaVaper(){
 				ramka.isVisible = true; 
 				text3.isVisible = true;
 				if(frank.position.x < (-GameVars.gameWidth/2 + position.x + 198)) frank.position.x += delta*speed;
-
+				else{
+					frankMorda.isVisible = true;
+					frankMorda2.isVisible = true;
+					
+					//korwinMorda(delta);
+					moveFrank(frankMorda(),delta);
+				}
 				
 				if(vaper.position.x > (GameVars.gameWidth/2 + position.x - 200)) vaper.position.x -= delta*speed;
 				else vaper.position.x = GameVars.gameWidth/2 + position.x - 200;
@@ -362,6 +439,8 @@ public void ramkaVaper(){
 			}
 			
 			else if(ktoraRamka == 4){
+				frankMorda.isVisible = false;
+				frankMorda2.isVisible = false;
 				if(frank.position.x >= (-GameVars.gameWidth/2 + position.x - 250)) frank.position.x -= delta*(1.5*speed);
 
 				if(vaper.position.x <= (GameVars.gameWidth/2 + position.x + 250)) vaper.position.x += delta*(1.5*speed);
