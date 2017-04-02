@@ -46,6 +46,12 @@ public class Controller implements InputProcessor{
 			model.getScene().player.isA = true;
 			break;
 		}
+		case Keys.ENTER: {
+			if (model.getScene().score > 3 && model.getScene().score < 6) {
+				model.getScene().ramka.przestaw(1);
+			}
+			break;
+		}
 		}
 		
 		return false;

@@ -19,7 +19,7 @@ public class Sprajty extends Sprajt{
 			
 			plansza = new SpriteObject(this, 0, 0);
 			addSprite(plansza)
-			.addTexture(Gdx.files.internal("data/plansza.png"));
+			.addTexture(Gdx.files.internal("data/plansza1.png"));
 			break;
 		}
 		

@@ -30,7 +30,7 @@ import gamejam.Ramka;
 public class GameScene extends Scene{
 	float wirX, wirY;
 	float pawianX = -200, pawianY = -200;
-	int score;
+	public int score;
 	public Player player;
 	public Ramka ramka;
 	public Pasek pasek;
@@ -81,6 +81,17 @@ public class GameScene extends Scene{
 		super.update(delta);
 		cam.position.set(player.hitbox.position.x, player.hitbox.position.y, 0);
 		cam.update();
+		
+		
+		if (fem != null && fem.isOver && score == 3) {
+			fem.hitbox.body.setActive(false);
+			score++;
+			ramka.przestaw(1);
+			pasek.setVap();
+		}
+		
+		
+		
 		for (int x = 0;  x < hums.size(); x++) {
 			if (hums.get(x).isDead) {
 				
