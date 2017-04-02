@@ -10,6 +10,7 @@ public class Ramka extends Sprajt{
 	SpriteObject ramka;
 	SpriteObject text;
 	SpriteObject text2;
+	SpriteObject text3;
 	SpriteObject triggered;
 	SpriteObject kobietysa;
 	SpriteObject korwin;
@@ -19,6 +20,9 @@ public class Ramka extends Sprajt{
 	SpriteObject nosal;
 	SpriteObject nosacz;
 	SpriteObject testo;
+	SpriteObject frank;
+	SpriteObject vaper;
+	SpriteObject fuck;
 	
 	boolean up = false;
 	int speed = 300;
@@ -39,6 +43,8 @@ public class Ramka extends Sprajt{
 		this.cam = cam;
 		ramkaKorwin();
 		ramkaNosal();
+		ramkaVaper();
+		
 	}
 	
 	public void ramkaKorwin(){
@@ -132,9 +138,48 @@ public class Ramka extends Sprajt{
 		
 	}
 	
+public void ramkaVaper(){
+		
+		text3 = new SpriteObject(this, 0, 0);
+		addSprite(text3)
+		.addTexture(Gdx.files.internal("data/text.png"))
+		.isVisible = false;
+		
+		frank = new SpriteObject(this, -GameVars.gameWidth/2 - 200, 0);
+		addSprite(frank)
+		.addTexture(Gdx.files.internal("data/frank.png"))
+		.isVisible = true;
+		
+		vaper = new SpriteObject(this, GameVars.gameWidth/2 + 200, 0);
+		addSprite(vaper)
+		.addTexture(Gdx.files.internal("data/vaper.png"))
+		.addTexture(Gdx.files.internal("data/vaperalert.png"))
+		.isVisible = true;
+		vaper.frameTime = 9999999; 
+				
+		triggered = new SpriteObject(this, 0, -300);
+		addSprite(triggered)
+		.addTexture(Gdx.files.internal("data/triggered.png"))
+		.addTexture(Gdx.files.internal("data/triggered2.png"))
+		.isVisible = true;
+		triggered.frameTime = 0.5f; 
+		//triggered.frameNum = 0; 
+
+		fuck = new SpriteObject(this, 0, -300);
+		addSprite(fuck)
+		.addTexture(Gdx.files.internal("data/fuck.png"))
+		.isVisible = true;
+		
+		ramka = new SpriteObject(this, 0, 0);
+		addSprite(ramka)
+		.addTexture(Gdx.files.internal("data/ramka.png"))
+		.isVisible = false;
+
+		
+	}
+	
 	/**
-	1- korwin 3 przesuniecia, 2- nosacz
-	*/
+	1- korwin 3 przesuniecia, 2- vaper, 3- nosacz	*/
 	
 	public void przestaw(int ktoraRamkaKurwa){ //0 nic, 1 korwin, 2 nosacz
 
@@ -227,7 +272,7 @@ public class Ramka extends Sprajt{
 			}
 			
 		break;
-		case 2:
+		case 3:
 			if(ktoraRamka == 1){
 				nosal.isVisible = true;
 				testo.isVisible = true;
@@ -274,6 +319,59 @@ public class Ramka extends Sprajt{
 					nosal.isVisible = false;
 					testo.isVisible = false;
 					nosal.frameTime = 999999; 
+					ktoraRamka = 0;
+				}
+				else triggered.position.y -= delta*(speed);
+
+			}
+		break;
+		case 2:
+			if(ktoraRamka == 1){
+				vaper.isVisible = true;
+				frank.isVisible = true;
+				ramka.isVisible = true; 
+				text3.isVisible = true;
+				if(frank.position.x < (-GameVars.gameWidth/2 + position.x + 198)) frank.position.x += delta*speed;
+
+				
+				if(vaper.position.x > (GameVars.gameWidth/2 + position.x - 200)) vaper.position.x -= delta*speed;
+				else vaper.position.x = GameVars.gameWidth/2 + position.x - 200;
+			
+				if( fuck.position.y < ( position.y - 100))  fuck.position.y += delta*(0.5*speed);
+				else{  fuck.position.y = position.y - 100;
+					//ktoraRamka++;
+				}
+		
+			}
+
+			else if(ktoraRamka == 2){
+				
+				if( fuck.position.y < -150) ktoraRamka++;
+				else fuck.position.y -= delta*(1.3*speed);
+				//ktoraRamka++;
+			}
+			
+			else if(ktoraRamka == 3){
+				vaper.frameTime = 0.5f; 
+				triggered.position.y = position.y - 100;
+				//if(triggered.position.y < ( position.y - 100)) triggered.position.y += delta*(0.5*speed);
+				//else{ triggered.position.y = position.y - 100;
+				//ktoraRamka++;
+			//}
+				
+			}
+			
+			else if(ktoraRamka == 4){
+				if(frank.position.x >= (-GameVars.gameWidth/2 + position.x - 250)) frank.position.x -= delta*(1.5*speed);
+
+				if(vaper.position.x <= (GameVars.gameWidth/2 + position.x + 250)) vaper.position.x += delta*(1.5*speed);
+				
+				if(triggered.position.y < -150){
+					ramka.isVisible = false;
+					text3.isVisible = false;     
+					vaper.isVisible = false;
+					frank.isVisible = false;
+					vaper.frameTime = 999999; 
 					ktoraRamka = 0;
 				}
 				else triggered.position.y -= delta*(speed);
