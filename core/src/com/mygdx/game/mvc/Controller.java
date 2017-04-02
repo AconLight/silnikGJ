@@ -47,8 +47,25 @@ public class Controller implements InputProcessor{
 			break;
 		}
 		case Keys.ENTER: {
-			if (model.getScene().score > 3 && model.getScene().score < 6) {
+			if (model.getScene().load == 0) {
+				model.getScene().load++;
+				model.getScene().splash.start.frameNum = 1;
+			}
+			else if (model.getScene().load == 1) {
+				model.getScene().load++;
+				model.getScene().splash.start.frameNum = 2;
+				
+			}
+			else if (model.getScene().load == 2) {
+				model.getScene().load++;
+				model.getScene().load();
+			}
+			else if (model.getScene().score > model.getScene().score1 && model.getScene().score < model.getScene().score1+3) {
 				model.getScene().ramka.przestaw(1);
+				model.getScene().score++;
+				if (model.getScene().score == model.getScene().score1 + 2) {
+					model.getScene().spawn2();
+				}
 			}
 			break;
 		}

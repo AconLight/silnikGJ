@@ -26,9 +26,13 @@ import gamejam.Pasek;
 
 import gamejam.Player;
 import gamejam.Ramka;
+import gamejam.Splash;
+import gamejam.Vaper;
 
 public class GameScene extends Scene{
 	float wirX, wirY;
+	public int score1 = 3;
+	public int score2 = 9 + 3;
 	float pawianX = -200, pawianY = -200;
 	public int score;
 	public Player player;
@@ -37,14 +41,22 @@ public class GameScene extends Scene{
 	public Map map;
 	public ArrayList<Human> hums;
 	public Pawian pawian;
+	public Vaper vaper;
 	public Fem fem;
-	
+	public Splash splash;
+	public int load;
 	public GameScene(OrthographicCamera cam) {
 		this.cam = cam;
+		load = 0;
+		splash = new Splash(GameVars.gameWidth/2, GameVars.gameHeight/2);
+		addGameObject(splash);
+		
+	}
+	public void load() {
 		score = 0;
 		hums = new ArrayList<Human>();
 		map = new Map(this);
-
+		
 		player = new Player(world, 0, 0);
 		
 
@@ -54,20 +66,33 @@ public class GameScene extends Scene{
 		player = new Player(world, 0, 0);
 		addGameObject(player);
 		addGameObject(pasek);
-		hums.add(new Human(world, -700, 700, 500));
-		hums.add(new Human(world, -900, -700, 500));
-		hums.add(new Human(world, -700, 700, 500));
-
-
-		gameObjects.addAll(hums);
+		spawn1();
+		
 		ramka = new Ramka(cam);
 		addGameObject(ramka);
-		
 	}
 	
 	public void createWorld() {
 		super.createWorld();		
 		
+	}
+	public void spawn1() {
+		hums.add(new Human(world, -700, 700, 500));
+
+		gameObjects.addAll(hums);
+		score1 = hums.size();
+	}
+	public void spawn2() {
+		hums.add(new Human(world, -700, 700, 500));
+
+		gameObjects.addAll(hums);
+		score2 = hums.size()+3;
+	}
+	public void spawn3() {
+		hums.add(new Human(world, -700, 700, 500));
+		hums.add(new Human(world, -900, -700, 500));
+		hums.add(new Human(world, -700, 700, 500));
+		gameObjects.addAll(hums);
 	}
 	
 	public void setMap() {
@@ -78,12 +103,14 @@ public class GameScene extends Scene{
 	
 	
 	public void update(float delta) {
+		Gdx.app.log("score", "" + score);
+		if (load >= 3) {
 		super.update(delta);
 		cam.position.set(player.hitbox.position.x, player.hitbox.position.y, 0);
 		cam.update();
 		
 		
-		if (fem != null && fem.isOver && score == 3) {
+		if (fem != null && fem.isOver && score == score1) {
 			fem.hitbox.body.setActive(false);
 			score++;
 			ramka.przestaw(1);
@@ -98,7 +125,7 @@ public class GameScene extends Scene{
 				hums.get(x).applyForce(wirX - hums.get(x).hitbox.position.x, wirY - hums.get(x).hitbox.position.y);
 				hums.get(x).small(delta/4);
 				if (hums.get(x).isDead && hums.get(x).lewa.scl <= 0) {
-					if (score == 3) {
+					if (score == score1) {
 						if(fem == null) {
 							fem = new Fem(world, wirX, wirY, 300);
 						
@@ -106,12 +133,12 @@ public class GameScene extends Scene{
 						addGameObject(fem);
 						}
 					}
-					if (score == 3+6) {
-						if(pawian == null) {
-							pawian = new Pawian(world, wirX, wirY, 300);
+					if (score == score2) {
+						if(vaper == null) {
+							vaper = new Vaper(world, -500, 0, 300);
 						
-						pawian.isVisible = true;
-						addGameObject(pawian);
+						vaper.isVisible = true;
+						addGameObject(vaper);
 						}
 					}
 					
@@ -130,20 +157,24 @@ public class GameScene extends Scene{
 						player.projs.get(i).isVisible = false;
 						hums.get(j).isTriggered = true;
 						score++;
-						if (score == hums.size()) {
+						if (score == score1 || score == score2) {
 							
 							wirX = 0;
 							wirY = 0;
+							int roz = 0;
 							for (int x = 0;  x < hums.size(); x++) {
-								hums.get(x).isDead = true;
-								wirX += hums.get(x).hitbox.position.x;
-								wirY += hums.get(x).hitbox.position.y;
+								if (!hums.get(x).isDead) {
+									roz++;
+									hums.get(x).isDead = true;
+									wirX += hums.get(x).hitbox.position.x;
+									wirY += hums.get(x).hitbox.position.y;
+								}
 							}
-							wirX /= hums.size();
-							wirY /= hums.size();
+							wirX /= roz;
+							wirY /= roz;
 						}
 					}
-					if (fem != null) {
+					if (fem != null && !fem.isDead) {
 						dx = player.projs.get(i).position.x - fem.hitbox.position.x;
 						dy = player.projs.get(i).position.y - fem.hitbox.position.y;
 						if (Math.sqrt(dx*dx + dy*dy) < 50*(1+fem.banany/4f)) {
@@ -162,7 +193,7 @@ public class GameScene extends Scene{
 				player.isDead = true;
 			}
 		}
-		
+		}	
 	}
 
 }
